@@ -6,5 +6,6 @@ target 'SupportApp' do
   use_frameworks!
 
   # Pods for SupportApp
+  pod 'IQKeyboardManager'
 
 end

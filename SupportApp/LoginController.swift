@@ -1,5 +1,5 @@
 //
-//  HomeController.swift
+//  LoginController.swift
 //  SupportApp
 //
 //  Created by Thanh Tu Le Xuan on 7/25/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeController: UIViewController {
+class LoginController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
