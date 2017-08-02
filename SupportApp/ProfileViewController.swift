@@ -14,13 +14,25 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var posionTextField: UITextField!
     @IBAction func selectedPosionTextField(_ senqder: Any) {
         posionPickerView.isHidden = false
+        self.saveLayoutTop.constant = 110
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+        }
     }
 
+    @IBOutlet weak var saveButton: UIButton!
+    
+    @IBOutlet weak var editAvataButton: UIButton!
+    
+    @IBOutlet weak var saveLayoutTop: NSLayoutConstraint!
+    
     let dataPickerView = ["Kỹ thuật", "Bán Hàng", "Tư vấn", "Kinh doanh"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        saveButton.layer.cornerRadius = 5
+        editAvataButton.layer.cornerRadius = 7
         
     }
     
@@ -35,6 +47,10 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         posionTextField.text = dataPickerView[row]
         posionPickerView.isHidden = true
+        self.saveLayoutTop.constant = 30
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
