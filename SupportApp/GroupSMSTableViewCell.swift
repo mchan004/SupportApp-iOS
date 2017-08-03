@@ -10,9 +10,17 @@ import UIKit
 
 class GroupSMSTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var avataImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        
+        avataImage.clipsToBounds = true
+        avataImage.layer.cornerRadius = avataImage.frame.size.width / 2
+        avataImage.layer.borderWidth = 1
+        avataImage.layer.borderColor = UIColor.white.cgColor
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

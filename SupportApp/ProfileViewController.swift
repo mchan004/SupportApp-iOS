@@ -12,13 +12,7 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     @IBOutlet weak var posionPickerView: UIPickerView!
     @IBOutlet weak var posionTextField: UITextField!
-    @IBAction func selectedPosionTextField(_ senqder: Any) {
-        posionPickerView.isHidden = false
-        self.saveLayoutTop.constant = 110
-        UIView.animate(withDuration: 0.1) {
-            self.view.layoutIfNeeded()
-        }
-    }
+    
 
     @IBOutlet weak var saveButton: UIButton!
     
@@ -26,6 +20,17 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     @IBOutlet weak var saveLayoutTop: NSLayoutConstraint!
     
+    
+    
+    
+    
+    @IBAction func selectedPosionTextField(_ senqder: Any) {
+        posionPickerView.isHidden = false
+        self.saveLayoutTop.constant = 110
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
+        }
+    }
     let dataPickerView = ["Kỹ thuật", "Bán Hàng", "Tư vấn", "Kinh doanh"]
     
     override func viewDidLoad() {
