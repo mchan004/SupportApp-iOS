@@ -1,15 +1,14 @@
 //
-//  SendMessageTableViewCell.swift
+//  ReceiveMessageTableViewCell.swift
 //  SupportApp
 //
-//  Created by Thanh Tu on 8/4/17.
+//  Created by Thanh Tu on 8/5/17.
 //  Copyright © 2017 Thanh Tu Le Xuan. All rights reserved.
 //
 
 import UIKit
 
-class SendMessageTableViewCell: UITableViewCell {
-
+class ReceiveMessageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var message: UILabel!
     
@@ -30,19 +29,19 @@ class SendMessageTableViewCell: UITableViewCell {
         avataImage.layer.borderColor = UIColor.white.cgColor
         
         widthConstraint.constant = frame.width * 2 / 3
-
+        
         boxView.clipsToBounds = true
         boxView.layer.cornerRadius = 8
         
         
     }
-
     
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        
-//        // Configure the view for the selected state
-//    }
+    
+    //    override func setSelected(_ selected: Bool, animated: Bool) {
+    //        super.setSelected(selected, animated: animated)
+    //
+    //        // Configure the view for the selected state
+    //    }
     
     
 }

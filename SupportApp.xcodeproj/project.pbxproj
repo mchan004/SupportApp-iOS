@@ -18,7 +18,7 @@
 		265812F31F303BAB003C5F78 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F21F303BAB003C5F78 /* SideMenuTableViewCell.swift */; };
 		265812F51F303ECF003C5F78 /* GroupSMSTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F41F303ECF003C5F78 /* GroupSMSTableViewController.swift */; };
 		265812F71F303EFC003C5F78 /* GroupSMSTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F61F303EFC003C5F78 /* GroupSMSTableViewCell.swift */; };
-		26A163A01F35CD5000C02EA9 /* ReviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1639F1F35CD5000C02EA9 /* ReviceTableViewCell.swift */; };
+		26A163A01F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1639F1F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift */; };
 		26CC49B31F32FD400015E078 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CC49B21F32FD400015E078 /* MessagesViewController.swift */; };
 		26E6B4751F31E44F003D369A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B4741F31E44F003D369A /* ProfileViewController.swift */; };
 		ED826C916976CBD9ACAD48BA /* Pods_SupportApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5064B7DA8D8AABD7A2E06921 /* Pods_SupportApp.framework */; };
@@ -41,7 +41,7 @@
 		265812F21F303BAB003C5F78 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		265812F41F303ECF003C5F78 /* GroupSMSTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSMSTableViewController.swift; sourceTree = "<group>"; };
 		265812F61F303EFC003C5F78 /* GroupSMSTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSMSTableViewCell.swift; sourceTree = "<group>"; };
-		26A1639F1F35CD5000C02EA9 /* ReviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviceTableViewCell.swift; sourceTree = "<group>"; };
+		26A1639F1F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveMessageTableViewCell.swift; sourceTree = "<group>"; };
 		26CC49B21F32FD400015E078 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		26E6B4741F31E44F003D369A /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5064B7DA8D8AABD7A2E06921 /* Pods_SupportApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SupportApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				26364B3D1F34B014009319F6 /* SendMessageTableViewCell.swift */,
-				26A1639F1F35CD5000C02EA9 /* ReviceTableViewCell.swift */,
+				26A1639F1F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift */,
 			);
 			name = MessagesCell;
 			sourceTree = "<group>";
@@ -297,7 +297,7 @@
 				189A46F91F278644006DF15B /* LoginController.swift in Sources */,
 				26CC49B31F32FD400015E078 /* MessagesViewController.swift in Sources */,
 				265812F71F303EFC003C5F78 /* GroupSMSTableViewCell.swift in Sources */,
-				26A163A01F35CD5000C02EA9 /* ReviceTableViewCell.swift in Sources */,
+				26A163A01F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift in Sources */,
 				189A46F71F278644006DF15B /* AppDelegate.swift in Sources */,
 				265812EE1F3039C1003C5F78 /* SWRevealViewController.m in Sources */,
 				26E6B4751F31E44F003D369A /* ProfileViewController.swift in Sources */,
