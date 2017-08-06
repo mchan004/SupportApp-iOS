@@ -316,7 +316,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avataImage" destination="LV7-BM-jnE" id="V5Q-zu-DU1"/>
-                                    <segue destination="des-Br-LR4" kind="show" id="uQw-RM-Wdp"/>
+                                    <segue destination="des-Br-LR4" kind="show" identifier="backSegue" id="uQw-RM-Wdp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -352,33 +352,36 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpw-QG-7e0">
                                 <rect key="frame" x="0.0" y="450" width="320" height="30"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E9E-nz-Np8">
-                                        <rect key="frame" x="0.0" y="0.0" width="270" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E9E-nz-Np8">
+                                        <rect key="frame" x="7" y="0.0" width="281" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GnG-gU-53J">
-                                        <rect key="frame" x="270" y="0.0" width="50" height="30"/>
-                                        <state key="normal" title="Send"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayd-4V-7SN">
+                                        <rect key="frame" x="293" y="4" width="22" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ayd-4V-7SN" secondAttribute="height" multiplier="1:1" id="I0j-WP-r6m"/>
+                                        </constraints>
+                                        <state key="normal" image="send-button"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.45436310768127441" green="0.91856837272644043" blue="0.052902452647686005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="E9E-nz-Np8" secondAttribute="trailing" constant="50" id="0dy-Sb-gF0"/>
-                                    <constraint firstAttribute="trailing" secondItem="GnG-gU-53J" secondAttribute="trailing" id="50a-yx-gmH"/>
-                                    <constraint firstItem="GnG-gU-53J" firstAttribute="top" secondItem="cpw-QG-7e0" secondAttribute="top" id="54W-at-P0g"/>
-                                    <constraint firstAttribute="bottom" secondItem="GnG-gU-53J" secondAttribute="bottom" id="JTY-mF-E8O"/>
+                                    <constraint firstItem="ayd-4V-7SN" firstAttribute="top" secondItem="cpw-QG-7e0" secondAttribute="top" constant="4" id="11Y-n3-iuQ"/>
+                                    <constraint firstItem="ayd-4V-7SN" firstAttribute="leading" secondItem="E9E-nz-Np8" secondAttribute="trailing" constant="5" id="4YG-t7-WAV"/>
                                     <constraint firstAttribute="height" constant="30" id="K04-Ql-Mdx"/>
                                     <constraint firstItem="E9E-nz-Np8" firstAttribute="top" secondItem="cpw-QG-7e0" secondAttribute="top" id="SMb-vt-A95"/>
-                                    <constraint firstItem="GnG-gU-53J" firstAttribute="leading" secondItem="E9E-nz-Np8" secondAttribute="trailing" id="gzN-Xl-aWL"/>
+                                    <constraint firstAttribute="trailing" secondItem="ayd-4V-7SN" secondAttribute="trailing" constant="5" id="ViK-6e-LAv"/>
+                                    <constraint firstAttribute="bottom" secondItem="ayd-4V-7SN" secondAttribute="bottom" constant="4" id="fVs-fp-VBX"/>
                                     <constraint firstAttribute="bottom" secondItem="E9E-nz-Np8" secondAttribute="bottom" id="lVc-dc-ULx"/>
-                                    <constraint firstItem="E9E-nz-Np8" firstAttribute="leading" secondItem="cpw-QG-7e0" secondAttribute="leading" id="zpy-dX-Ge7"/>
+                                    <constraint firstItem="E9E-nz-Np8" firstAttribute="leading" secondItem="cpw-QG-7e0" secondAttribute="leading" constant="7" id="zpy-dX-Ge7"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OBf-NX-lTL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="106" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OBf-NX-lTL">
                                 <rect key="frame" x="0.0" y="64" width="320" height="386"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.80978554489999999" green="0.86617499590000002" blue="0.86915940049999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.80978554489999999" green="0.86617499590000002" blue="0.86915940049999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="send" rowHeight="106" id="B1M-CJ-f8K" customClass="SendMessageTableViewCell" customModule="SupportApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="106"/>
@@ -421,6 +424,7 @@
                                                 <constraint firstItem="ytd-DB-Wa3" firstAttribute="leading" secondItem="CNd-0y-YDL" secondAttribute="trailing" constant="10" id="w7E-7W-Hy9"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.80978554487228394" green="0.86617499589920044" blue="0.86915940046310425" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="avataImage" destination="ytd-DB-Wa3" id="P8G-AC-2XN"/>
                                             <outlet property="boxView" destination="tyQ-hP-FLE" id="Zup-o7-8fi"/>
@@ -436,11 +440,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGn-qr-jie" userLabel="Box">
-                                                    <rect key="frame" x="223" y="5" width="52" height="97.5"/>
+                                                    <rect key="frame" x="45" y="5" width="52" height="97.5"/>
                                                     <color key="backgroundColor" red="0.79867333169999999" green="0.93125849959999996" blue="0.96505898239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLq-T2-Ivd">
-                                                    <rect key="frame" x="228" y="10" width="42" height="87.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLq-T2-Ivd">
+                                                    <rect key="frame" x="50" y="10" width="42" height="87.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="9wo-n4-Ul0"/>
@@ -450,7 +454,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avata" translatesAutoresizingMaskIntoConstraints="NO" id="0Kf-xT-6Ih">
-                                                    <rect key="frame" x="280" y="10" width="30" height="30"/>
+                                                    <rect key="frame" x="10" y="10" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="Rkg-YL-hjh"/>
                                                         <constraint firstAttribute="height" constant="30" id="igo-my-zh7"/>
@@ -459,16 +463,17 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="fLq-T2-Ivd" secondAttribute="bottom" id="6F3-5j-hMd"/>
-                                                <constraint firstAttribute="trailing" secondItem="0Kf-xT-6Ih" secondAttribute="trailing" constant="10" id="8yR-ER-rNn"/>
                                                 <constraint firstItem="0Kf-xT-6Ih" firstAttribute="top" secondItem="MVt-2c-kH1" secondAttribute="top" constant="10" id="Ed8-P0-g3m"/>
                                                 <constraint firstItem="fLq-T2-Ivd" firstAttribute="top" secondItem="LGn-qr-jie" secondAttribute="top" constant="5" id="JE5-dT-FYw"/>
                                                 <constraint firstItem="fLq-T2-Ivd" firstAttribute="leading" secondItem="LGn-qr-jie" secondAttribute="leading" constant="5" id="P8S-Qe-qda"/>
                                                 <constraint firstItem="fLq-T2-Ivd" firstAttribute="trailing" secondItem="LGn-qr-jie" secondAttribute="trailing" constant="-5" id="V4N-m5-dHf"/>
                                                 <constraint firstItem="fLq-T2-Ivd" firstAttribute="bottom" secondItem="LGn-qr-jie" secondAttribute="bottom" constant="-5" id="Ve0-vQ-Tsl"/>
                                                 <constraint firstItem="fLq-T2-Ivd" firstAttribute="top" secondItem="MVt-2c-kH1" secondAttribute="top" constant="10" id="bQY-U6-Qv7"/>
-                                                <constraint firstItem="0Kf-xT-6Ih" firstAttribute="leading" secondItem="fLq-T2-Ivd" secondAttribute="trailing" constant="10" id="wdg-Li-9Qr"/>
+                                                <constraint firstItem="0Kf-xT-6Ih" firstAttribute="leading" secondItem="MVt-2c-kH1" secondAttribute="leading" constant="10" id="naq-bx-gZO"/>
+                                                <constraint firstItem="fLq-T2-Ivd" firstAttribute="leading" secondItem="0Kf-xT-6Ih" secondAttribute="trailing" constant="10" id="rAB-Fq-qgh"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.80978554489999999" green="0.86617499590000002" blue="0.86915940049999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="avataImage" destination="0Kf-xT-6Ih" id="HJg-m0-Xu8"/>
                                             <outlet property="boxView" destination="LGn-qr-jie" id="xLL-dK-3oD"/>
@@ -482,7 +487,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.80978554487228394" green="0.86617499589920044" blue="0.86915940046310425" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zXt-hA-ES0" firstAttribute="top" secondItem="cpw-QG-7e0" secondAttribute="bottom" id="CJk-DD-dyp"/>
                             <constraint firstItem="OBf-NX-lTL" firstAttribute="top" secondItem="o6h-pn-Wl4" secondAttribute="bottom" id="CzO-B7-Bge"/>
@@ -536,8 +541,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="tr9-XC-xkj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <color key="sectionIndexBackgroundColor" red="0.93715304136276245" green="0.93731361627578735" blue="0.93714290857315063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93323183059692383" green="0.93339180946350098" blue="0.93322175741195679" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="BNr-Oq-hpG">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -690,6 +694,7 @@
         <image name="avata" width="621" height="654"/>
         <image name="exit" width="32" height="32"/>
         <image name="logo_end" width="383" height="340"/>
+        <image name="send-button" width="32" height="32"/>
         <image name="user" width="32" height="32"/>
         <image name="wallpaper" width="520" height="350"/>
     </resources>
