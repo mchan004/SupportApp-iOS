@@ -17,8 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 0.07883770343, green: 0.5337522307, blue: 0.85657504, alpha: 1)
         UINavigationBar.appearance().barStyle = .blackOpaque
-//        IQKeyboardManager.shared().isEnabled = true
+
+        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.08352845162, green: 0.5444770455, blue: 0.8616511822, alpha: 1)
+        
+        UINavigationBar.appearance().tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        
         
         return true
     }
@@ -31,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        SocketIOManager.sharedInstance.closeConnection()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -39,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        SocketIOManager.sharedInstance.establishConnection()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

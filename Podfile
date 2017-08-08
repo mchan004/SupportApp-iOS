@@ -6,5 +6,6 @@ target 'SupportApp' do
   use_frameworks!
 
   # Pods for SupportApp
+  pod 'Socket.IO-Client-Swift'
 
 end
