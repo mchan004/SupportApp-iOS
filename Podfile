@@ -7,5 +7,7 @@ target 'SupportApp' do
 
   # Pods for SupportApp
   pod 'Socket.IO-Client-Swift'
+  pod 'Alamofire'
+  pod 'KeychainSwift'
 
 end

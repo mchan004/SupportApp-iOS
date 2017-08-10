@@ -10,13 +10,13 @@ import SocketIO
 
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
+    static var idUser: String?
     
     let socket = SocketIOClient(socketURL: URL(string: "http://192.168.1.107:3000")!)
     
     override init() {
         super.init()
     }
-    
     
     func establishConnection() {
         socket.connect()
@@ -25,6 +25,26 @@ class SocketIOManager: NSObject {
     
     func closeConnection() {
         socket.disconnect()
+    }
+    
+    func getUserList(userName: String, completionHandler: @escaping (_ userList: [UserList]) -> Void) {
+        socket.on("userList") { ( dataArray, ack) -> Void in
+            let dataun = dataArray[0] as! [[String: AnyObject]]
+            var usersList: [UserList] = []
+            for data in dataun {
+                
+                let u = UserList(id: data["id"] as! String, name: data["name"] as? String, date: data[""] as? String)
+                usersList.append(u)
+            }
+            completionHandler(usersList)
+        }
+    }
+    
+    
+    func getChatLog(idCustomer: String, completionHandler: @escaping () -> Void) {
+        socket.on("userList") { ( dataArray, ack) -> Void in
+            
+        }
     }
     
     

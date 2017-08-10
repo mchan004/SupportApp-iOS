@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SupportApp/MessagesViewController.swift"
-            timestampString = "523867538.949937"
+            timestampString = "523901319.063459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "setupNavigationBar()"
             landmarkType = "7">
          </BreakpointContent>

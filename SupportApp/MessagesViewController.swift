@@ -21,7 +21,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
     }
     
     
-    let socket = SocketIOClient(socketURL: URL(string: "http://192.168.1.107:3000")!)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +31,8 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         setupTableView()
         setupKeyboard()
         
-        socket.connect()
-
+    
+        
         
     }
     
@@ -179,7 +179,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
             return
         }
         
-        socket.emit("send_message", ["mess": messageTextField.text!])
+//        socket.emit("send_message", ["mess": messageTextField.text!])
         
         messageTextField.text = nil
         

@@ -1,15 +1,21 @@
 PODS:
+  - Alamofire (4.5.0)
+  - KeychainSwift (8.0.2)
   - Socket.IO-Client-Swift (11.0.0):
     - StarscreamSocketIO (~> 8.0.1)
   - StarscreamSocketIO (8.0.1)
 
 DEPENDENCIES:
+  - Alamofire
+  - KeychainSwift
   - Socket.IO-Client-Swift
 
 SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  KeychainSwift: 213db04dfe7244988e61f77c72a2afb2f775954a
   Socket.IO-Client-Swift: 9cafa4459be23886c231942baeebb0df94f3989e
   StarscreamSocketIO: 821a1a2597cc4735919fd5d7683a85c14b81bb8c
 
-PODFILE CHECKSUM: 14dd4ea3a64cfcd174b14c379383065d83ff4d1c
+PODFILE CHECKSUM: ceff74cc50ff8116de44f1da137ccde5bbb6f789
 
 COCOAPODS: 1.2.1

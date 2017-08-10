@@ -12,17 +12,19 @@
 		189A46FC1F278644006DF15B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189A46FA1F278644006DF15B /* Main.storyboard */; };
 		189A46FE1F278644006DF15B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189A46FD1F278644006DF15B /* Assets.xcassets */; };
 		189A47011F278644006DF15B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189A46FF1F278644006DF15B /* LaunchScreen.storyboard */; };
+		262A3CD01F3C2A480073929D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262A3CCF1F3C2A470073929D /* File.swift */; };
 		26364B3F1F34B014009319F6 /* SendMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26364B3D1F34B014009319F6 /* SendMessageTableViewCell.swift */; };
 		265812EE1F3039C1003C5F78 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265812ED1F3039C1003C5F78 /* SWRevealViewController.m */; };
 		265812F11F303B11003C5F78 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F01F303B11003C5F78 /* SideMenuTableViewController.swift */; };
 		265812F31F303BAB003C5F78 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F21F303BAB003C5F78 /* SideMenuTableViewCell.swift */; };
-		265812F51F303ECF003C5F78 /* GroupSMSTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F41F303ECF003C5F78 /* GroupSMSTableViewController.swift */; };
-		265812F71F303EFC003C5F78 /* GroupSMSTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F61F303EFC003C5F78 /* GroupSMSTableViewCell.swift */; };
+		265812F51F303ECF003C5F78 /* RoomMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F41F303ECF003C5F78 /* RoomMessageTableViewController.swift */; };
+		265812F71F303EFC003C5F78 /* RoomMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F61F303EFC003C5F78 /* RoomMessageTableViewCell.swift */; };
 		269531701F376B25008D4617 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2695316F1F376B25008D4617 /* Extension.swift */; };
 		26A163A01F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1639F1F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift */; };
 		26CC49B31F32FD400015E078 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CC49B21F32FD400015E078 /* MessagesViewController.swift */; };
 		26E6B4751F31E44F003D369A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E6B4741F31E44F003D369A /* ProfileViewController.swift */; };
 		26FE9C6C1F39CD0300C1FACB /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE9C6B1F39CD0300C1FACB /* SocketIOManager.swift */; };
+		26FE9C6E1F3A143300C1FACB /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FE9C6D1F3A143300C1FACB /* UserList.swift */; };
 		ED826C916976CBD9ACAD48BA /* Pods_SupportApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5064B7DA8D8AABD7A2E06921 /* Pods_SupportApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,19 +37,21 @@
 		189A46FD1F278644006DF15B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		189A47001F278644006DF15B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		189A47021F278644006DF15B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		262A3CCF1F3C2A470073929D /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		26364B3D1F34B014009319F6 /* SendMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessageTableViewCell.swift; sourceTree = "<group>"; };
 		265812EB1F3039BE003C5F78 /* SupportApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SupportApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		265812EC1F3039C1003C5F78 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		265812ED1F3039C1003C5F78 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		265812F01F303B11003C5F78 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		265812F21F303BAB003C5F78 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
-		265812F41F303ECF003C5F78 /* GroupSMSTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSMSTableViewController.swift; sourceTree = "<group>"; };
-		265812F61F303EFC003C5F78 /* GroupSMSTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSMSTableViewCell.swift; sourceTree = "<group>"; };
+		265812F41F303ECF003C5F78 /* RoomMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomMessageTableViewController.swift; sourceTree = "<group>"; };
+		265812F61F303EFC003C5F78 /* RoomMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomMessageTableViewCell.swift; sourceTree = "<group>"; };
 		2695316F1F376B25008D4617 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		26A1639F1F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveMessageTableViewCell.swift; sourceTree = "<group>"; };
 		26CC49B21F32FD400015E078 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		26E6B4741F31E44F003D369A /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		26FE9C6B1F39CD0300C1FACB /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		26FE9C6D1F3A143300C1FACB /* UserList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
 		5064B7DA8D8AABD7A2E06921 /* Pods_SupportApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SupportApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9A65EF8C00D0848999A019 /* Pods-SupportApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupportApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SupportApp/Pods-SupportApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,7 +74,7 @@
 				26FE9C6A1F39CCE600C1FACB /* SocketIO */,
 				189A46F81F278644006DF15B /* LoginController.swift */,
 				265812F01F303B11003C5F78 /* SideMenuTableViewController.swift */,
-				265812F41F303ECF003C5F78 /* GroupSMSTableViewController.swift */,
+				265812F41F303ECF003C5F78 /* RoomMessageTableViewController.swift */,
 				26E6B4741F31E44F003D369A /* ProfileViewController.swift */,
 				26CC49B21F32FD400015E078 /* MessagesViewController.swift */,
 			);
@@ -83,7 +87,7 @@
 				26CC49B41F3367340015E078 /* MessagesCell */,
 				189A46FA1F278644006DF15B /* Main.storyboard */,
 				265812F21F303BAB003C5F78 /* SideMenuTableViewCell.swift */,
-				265812F61F303EFC003C5F78 /* GroupSMSTableViewCell.swift */,
+				265812F61F303EFC003C5F78 /* RoomMessageTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -91,6 +95,8 @@
 		186261C51F2798CE00B1857C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				26FE9C6D1F3A143300C1FACB /* UserList.swift */,
+				262A3CCF1F3C2A470073929D /* File.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -307,17 +313,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				265812F31F303BAB003C5F78 /* SideMenuTableViewCell.swift in Sources */,
-				265812F51F303ECF003C5F78 /* GroupSMSTableViewController.swift in Sources */,
+				265812F51F303ECF003C5F78 /* RoomMessageTableViewController.swift in Sources */,
 				189A46F91F278644006DF15B /* LoginController.swift in Sources */,
 				269531701F376B25008D4617 /* Extension.swift in Sources */,
 				26CC49B31F32FD400015E078 /* MessagesViewController.swift in Sources */,
-				265812F71F303EFC003C5F78 /* GroupSMSTableViewCell.swift in Sources */,
+				265812F71F303EFC003C5F78 /* RoomMessageTableViewCell.swift in Sources */,
 				26A163A01F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift in Sources */,
 				189A46F71F278644006DF15B /* AppDelegate.swift in Sources */,
 				265812EE1F3039C1003C5F78 /* SWRevealViewController.m in Sources */,
 				26FE9C6C1F39CD0300C1FACB /* SocketIOManager.swift in Sources */,
+				262A3CD01F3C2A480073929D /* File.swift in Sources */,
 				26E6B4751F31E44F003D369A /* ProfileViewController.swift in Sources */,
 				265812F11F303B11003C5F78 /* SideMenuTableViewController.swift in Sources */,
+				26FE9C6E1F3A143300C1FACB /* UserList.swift in Sources */,
 				26364B3F1F34B014009319F6 /* SendMessageTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

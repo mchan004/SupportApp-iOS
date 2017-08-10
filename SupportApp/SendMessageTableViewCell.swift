@@ -29,7 +29,7 @@ class SendMessageTableViewCell: UITableViewCell {
         avataImage.layer.borderWidth = 1
         avataImage.layer.borderColor = UIColor.white.cgColor
         
-        widthConstraint.constant = frame.width * 2 / 3
+        widthConstraint.constant = (frame.width * (2 / 3)) - 50
 
         boxView.clipsToBounds = true
         boxView.layer.cornerRadius = 8
