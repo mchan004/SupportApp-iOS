@@ -22,14 +22,14 @@ class RoomMessageTableViewController: UITableViewController {
         if keychain.get("token") == nil {
             
             
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginController
-            self.present(vc, animated: true, completion: nil)
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginController
+//            self.present(vc, animated: true, completion: nil)
             
             
-//            if let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "Login") as? LoginController {
-//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                appDelegate.window?.rootViewController!.present(vc3, animated: true, completion: nil)
-//            }
+            if let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "Login") as? LoginController {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window?.rootViewController!.present(vc3, animated: true, completion: nil)
+            }
         }
         
         if self.revealViewController() != nil {

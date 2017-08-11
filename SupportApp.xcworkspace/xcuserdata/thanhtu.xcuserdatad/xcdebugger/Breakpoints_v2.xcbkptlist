@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SupportApp/LoginController.swift"
-            timestampString = "524138331.844868"
+            timestampString = "524150021.181724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "login(_:)"
             landmarkType = "7">
             <Locations>
@@ -202,12 +202,12 @@
                   moduleName = "SupportApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
-                  timestampString = "524137758.927026"
+                  timestampString = "524145391.935275"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "1018">
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "1003">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -217,12 +217,12 @@
                   moduleName = "SupportApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
-                  timestampString = "524137758.930292"
+                  timestampString = "524145391.937214"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "31"
-                  endingLineNumber = "31"
-                  offsetFromSymbolStart = "1494">
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "1479">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -250,12 +250,12 @@
                   moduleName = "SupportApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
-                  timestampString = "524137758.937352"
+                  timestampString = "524145391.944518"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "612">
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "597">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -265,12 +265,12 @@
                   moduleName = "SupportApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
-                  timestampString = "524137758.940482"
+                  timestampString = "524145391.946984"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29"
-                  offsetFromSymbolStart = "956">
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "941">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SupportApp/LoginController.swift"
-            timestampString = "524138331.844868"
+            timestampString = "524150021.181724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -305,6 +305,38 @@
             endingLineNumber = "21"
             landmarkName = "login(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SupportApp.LoginController.login (Any) -&gt; ()"
+                  moduleName = "SupportApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
+                  timestampString = "524145391.951385"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "29">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SupportApp.LoginController.login (Any) -&gt; ()"
+                  moduleName = "SupportApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
+                  timestampString = "524145391.953326"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "3203">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

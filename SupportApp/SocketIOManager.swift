@@ -7,6 +7,7 @@
 //
 import UIKit
 import SocketIO
+import KeychainSwift
 
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
@@ -19,7 +20,11 @@ class SocketIOManager: NSObject {
     }
     
     func establishConnection() {
-        socket.connect()
+        let keychain = KeychainSwift()
+        if keychain.get("token") != nil {
+            socket.connect()
+        }
+        
     }
     
     

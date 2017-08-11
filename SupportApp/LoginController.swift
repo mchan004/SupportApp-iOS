@@ -34,15 +34,9 @@ class LoginController: UIViewController {
                     if let code: Int = json["code"] as? Int {
                         if code == 1 {
                             if let mess: String = json["token"] as? String {
-
                                 self.keychain.set(mess, forKey: "token")
-                                
-                                self.dismiss(animated: true, completion: {
-                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-                                    self.present(vc!, animated: true, completion: nil)
-                                })
-                                
-                                
+                                SocketIOManager.sharedInstance.establishConnection()
+                                self.dismiss(animated: true, completion: nil)
                             }
                         } else {
                             self.alert()
@@ -66,6 +60,8 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         keychain.clear()
+        SocketIOManager.sharedInstance.closeConnection()
+        
         view.backgroundColor = #colorLiteral(red: 0.08352845162, green: 0.5444770455, blue: 0.8616511822, alpha: 1)
         
         loginButton.clipsToBounds = true
@@ -74,7 +70,6 @@ class LoginController: UIViewController {
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.white.cgColor
         
-//        logoImage.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         logoImage.image = #imageLiteral(resourceName: "logo_end").withRenderingMode(.alwaysTemplate)
         
     }
