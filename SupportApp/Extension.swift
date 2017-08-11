@@ -15,3 +15,12 @@ extension UIApplication {
     }
 }
 
+
+class AllConfig {
+    let myWebsite = "http://192.168.1.107:3000"
+    
+    
+//    func AllConfig() -> String {
+//        return myWebsite
+//    }
+}

@@ -15,7 +15,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="WM7-64-Zh4">
             <objects>
-                <viewController id="rNT-k3-fnK" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home" id="rNT-k3-fnK" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ae1-sS-W0H"/>
                         <viewControllerLayoutGuide type="bottom" id="y6G-Ec-EjB"/>
@@ -57,7 +57,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3T2-nD-hVr">
                                 <rect key="frame" x="82" y="227.66666666666669" width="250" height="30.000000000000057"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="9gJ-O2-JVe"/>
                                 </constraints>
@@ -79,6 +79,7 @@
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_end" translatesAutoresizingMaskIntoConstraints="NO" id="XdQ-zx-usj">
                                 <rect key="frame" x="35" y="272.66666666666663" width="344" height="310.66666666666663"/>
+                                <color key="tintColor" red="0.92133962563451777" green="0.92133962563451777" blue="0.92133962563451777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XdQ-zx-usj" secondAttribute="height" multiplier="52:47" id="S1c-g6-Cos"/>
                                 </constraints>
@@ -86,13 +87,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSV-Jh-cTY">
                                 <rect key="frame" x="87" y="161.66666666666666" width="74" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVK-YW-nzf">
                                 <rect key="frame" x="87" y="108.66666666666666" width="41" height="20.999999999999972"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -114,6 +115,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="3T2-nD-hVr" id="Rn7-2t-Epq"/>
+                        <outlet property="logoImage" destination="XdQ-zx-usj" id="djY-sZ-EYB"/>
                         <outlet property="password" destination="IDd-E4-AbI" id="dAj-hd-Aoa"/>
                         <outlet property="username" destination="TyX-Df-pjn" id="88H-IW-eQV"/>
                     </connections>

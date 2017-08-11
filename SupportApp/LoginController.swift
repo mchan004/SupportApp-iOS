@@ -8,28 +8,56 @@
 
 import UIKit
 import Alamofire
+import KeychainSwift
 
 class LoginController: UIViewController {
 
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
-    
+    @IBOutlet weak var logoImage: UIImageView!
+    let keychain = KeychainSwift()
     @IBAction func login(_ sender: Any) {
+        if (username.text?.length)! < 3 || (password.text?.length)! < 3 {
+            alert()
+            return
+        }
+        
         let parameters: Parameters = ["username": username.text!, "password": password.text!]
-        Alamofire.request("http://192.168.1.107:3000/login", method: .post, parameters: parameters).responseJSON { response in
+        Alamofire.request(AllConfig().myWebsite + "/login", method: .post, parameters: parameters).responseJSON { response in
             
             
-            
-            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                if utf8Text == "sai" {
-                    let alert = UIAlertController(title: "Something wrong here!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Let me check again", style: UIAlertActionStyle.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+            if let data = response.data {
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                    if let code: Int = json["code"] as? Int {
+                        if code == 1 {
+                            if let mess: String = json["token"] as? String {
+
+                                self.keychain.set(mess, forKey: "token")
+                                
+                                self.dismiss(animated: true, completion: {
+                                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+                                    self.present(vc!, animated: true, completion: nil)
+                                })
+                                
+                                
+                            }
+                        } else {
+                            self.alert()
+                        }
+                        
+                    }
                     
                     
-                } else {
-                    print(utf8Text)
+                } catch {
+                    print("Error deserializing JSON: \(error)")
                 }
+                
+
+                
+                
                 
             }
         }
@@ -37,13 +65,24 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        keychain.clear()
+        view.backgroundColor = #colorLiteral(red: 0.08352845162, green: 0.5444770455, blue: 0.8616511822, alpha: 1)
+        
+        loginButton.clipsToBounds = true
+        loginButton.layer.cornerRadius = 7
+        
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderColor = UIColor.white.cgColor
+        
+//        logoImage.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        logoImage.image = #imageLiteral(resourceName: "logo_end").withRenderingMode(.alwaysTemplate)
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func alert() {
+        let alert = UIAlertController(title: "Something wrong here!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Let me check again", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
-
-
 }
 
