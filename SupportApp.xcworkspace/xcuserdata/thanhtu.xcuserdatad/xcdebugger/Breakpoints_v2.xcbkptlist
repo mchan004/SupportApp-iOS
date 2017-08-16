@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SupportApp/MessagesViewController.swift"
-            timestampString = "523901319.063459"
+            timestampString = "524203154.557205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "setupNavigationBar()"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SupportApp/LoginController.swift"
-            timestampString = "524150021.181724"
+            timestampString = "524292165.244408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "login(_:)"
             landmarkType = "7">
             <Locations>
@@ -182,7 +182,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SupportApp/LoginController.swift"
@@ -195,34 +195,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SupportApp.LoginController.(login (Any) -&gt; ()).(closure #1)"
                   moduleName = "SupportApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
-                  timestampString = "524145391.935275"
+                  timestampString = "524317100.974094"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "36"
                   endingLineNumber = "36"
-                  offsetFromSymbolStart = "1003">
+                  offsetFromSymbolStart = "1152">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SupportApp.LoginController.(login (Any) -&gt; ()).(closure #1)"
                   moduleName = "SupportApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
-                  timestampString = "524145391.937214"
+                  timestampString = "524317100.976203"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "36"
                   endingLineNumber = "36"
-                  offsetFromSymbolStart = "1479">
+                  offsetFromSymbolStart = "1628">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -230,7 +230,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SupportApp/LoginController.swift"
@@ -243,34 +243,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SupportApp.LoginController.(login (Any) -&gt; ()).(closure #1)"
                   moduleName = "SupportApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
-                  timestampString = "524145391.944518"
+                  timestampString = "524239578.595586"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
                   endingLineNumber = "34"
-                  offsetFromSymbolStart = "597">
+                  offsetFromSymbolStart = "612">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SupportApp.LoginController.(login (Any) -&gt; ()).(closure #1)"
                   moduleName = "SupportApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
-                  timestampString = "524145391.946984"
+                  timestampString = "524239578.597299"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
                   endingLineNumber = "34"
-                  offsetFromSymbolStart = "941">
+                  offsetFromSymbolStart = "956">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SupportApp/LoginController.swift"
-            timestampString = "524150021.181724"
+            timestampString = "524473980.20593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -294,7 +294,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SupportApp/LoginController.swift"
@@ -307,14 +307,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SupportApp.LoginController.login (Any) -&gt; ()"
                   moduleName = "SupportApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
-                  timestampString = "524145391.951385"
+                  timestampString = "524240217.83163"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -322,14 +322,14 @@
                   offsetFromSymbolStart = "29">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SupportApp.LoginController.login (Any) -&gt; ()"
                   moduleName = "SupportApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/thanhtu/Desktop/SupportApp-iOS/SupportApp/LoginController.swift"
-                  timestampString = "524145391.953326"
+                  timestampString = "524240217.834613"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -337,6 +337,38 @@
                   offsetFromSymbolStart = "3203">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SupportApp/LoginController.swift"
+            timestampString = "524317120.610015"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "login(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SupportApp/LoginController.swift"
+            timestampString = "524317252.816475"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "login(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

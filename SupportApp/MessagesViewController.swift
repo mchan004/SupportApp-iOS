@@ -15,6 +15,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
     @IBOutlet weak var tableViewSMS: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var textBottomLayout: NSLayoutConstraint!
+    let userDefaults = UserDefaults()
     
     @IBAction func sendButtonAction(_ sender: Any) {
         handleSend()
@@ -31,10 +32,10 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         setupTableView()
         setupKeyboard()
         
-    
-        
         
     }
+    
+    
     
     
     

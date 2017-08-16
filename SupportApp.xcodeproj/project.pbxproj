@@ -455,6 +455,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = M37C2L4H2B;
 				INFOPLIST_FILE = SupportApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thanhtu.SupportApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -472,6 +473,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = M37C2L4H2B;
 				INFOPLIST_FILE = SupportApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thanhtu.SupportApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

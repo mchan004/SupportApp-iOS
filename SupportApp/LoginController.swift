@@ -28,15 +28,21 @@ class LoginController: UIViewController {
             
             
             if let data = response.data {
-                
+                print(data)
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                     if let code: Int = json["code"] as? Int {
                         if code == 1 {
                             if let mess: String = json["token"] as? String {
                                 self.keychain.set(mess, forKey: "token")
+                                if let name = json["name"] as? String {
+                                    self.keychain.set(name, forKey: "userName")
+                                }
                                 SocketIOManager.sharedInstance.establishConnection()
-                                self.dismiss(animated: true, completion: nil)
+
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                appDelegate.switchHome()
+                                
                             }
                         } else {
                             self.alert()
@@ -49,16 +55,14 @@ class LoginController: UIViewController {
                     print("Error deserializing JSON: \(error)")
                 }
                 
-
-                
-                
-                
             }
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        keychain
+        print(keychain.get("token"))
         keychain.clear()
         SocketIOManager.sharedInstance.closeConnection()
         
@@ -80,4 +84,3 @@ class LoginController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
-

@@ -12,7 +12,7 @@ import KeychainSwift
 class RoomMessageTableViewController: UITableViewController {
 
     @IBOutlet weak var SideMenu: UIBarButtonItem!
-    var userDefaults = UserDefaults()
+    let userDefaults = UserDefaults()
     var userList: [UserList] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +22,27 @@ class RoomMessageTableViewController: UITableViewController {
         if keychain.get("token") == nil {
             
             
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.switchLogin()
+            
+            
+            
+            
+            
 //            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginController
 //            self.present(vc, animated: true, completion: nil)
             
             
-            if let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "Login") as? LoginController {
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController!.present(vc3, animated: true, completion: nil)
-            }
+//            if let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "Login") as? LoginController {
+//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                appDelegate.window?.rootViewController!.present(vc3, animated: true, completion: nil)
+//            }
+            
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let vc = storyboard.instantiateViewController(withIdentifier: "Login")
+            
+//            performSegue(withIdentifier: "Login", sender: self)
+            
         }
         
         if self.revealViewController() != nil {
@@ -51,6 +64,10 @@ class RoomMessageTableViewController: UITableViewController {
         
         
     }
+    
+/////////////////
+////Tableview////
+/////////////////
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -13,23 +13,55 @@ class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
     static var idUser: String?
     
-    let socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!)
+//    let socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!)
     
     override init() {
         super.init()
     }
     
+    
+    var socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!)
+    
     func establishConnection() {
+        
         let keychain = KeychainSwift()
-        if keychain.get("token") != nil {
+        if let token = keychain.get("token") {
+            socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!, config: SocketIOClientConfiguration(arrayLiteral: SocketIOClientOption.connectParams(["token": token])))
+            
             socket.connect()
+            
+            socket.on("error") { ( error, ack) -> Void in
+                let alert = UIAlertController(title: "User's token has expired!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Let me login again", style: UIAlertActionStyle.default, handler: nil))
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.switchHome()
+            }
+            
+            
+            
+//            socket.on("unauthorized", function(error, callback) {
+//                if (error.data.type == "UnauthorizedError" || error.data.code == "invalid_token") {
+//                    // redirect user to login page perhaps or execute callback:
+//                    callback();
+//                    console.log("User's token has expired");
+//                }
+//            });
+            
+            
+            
+            
         }
         
     }
     
     
     func closeConnection() {
+        
+        
         socket.disconnect()
+        
+        
     }
     
     func getUserList(userName: String, completionHandler: @escaping (_ userList: [UserList]) -> Void) {
