@@ -61,8 +61,7 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        keychain
-        print(keychain.get("token"))
+        
         keychain.clear()
         SocketIOManager.sharedInstance.closeConnection()
         

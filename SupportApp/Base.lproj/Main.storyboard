@@ -528,6 +528,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="des-Br-LR4" id="Bpt-uz-rmM"/>
+                                    <outlet property="delegate" destination="des-Br-LR4" id="D3r-nJ-z1S"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -636,7 +637,7 @@
                                         <rect key="frame" x="0.0" y="200" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="388-KD-m3D" id="aL1-bU-ZoX">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="Nbx-sW-XgZ">
@@ -669,7 +670,7 @@
                                         <rect key="frame" x="0.0" y="244" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="35E-7f-roc" id="iud-co-wKp">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exit" translatesAutoresizingMaskIntoConstraints="NO" id="li2-1f-bgs">

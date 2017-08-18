@@ -11,14 +11,10 @@ import KeychainSwift
 
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
-    static var idUser: String?
-    
-//    let socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!)
     
     override init() {
         super.init()
     }
-    
     
     var socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!)
     
@@ -37,17 +33,6 @@ class SocketIOManager: NSObject {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.switchHome()
             }
-            
-            
-            
-//            socket.on("unauthorized", function(error, callback) {
-//                if (error.data.type == "UnauthorizedError" || error.data.code == "invalid_token") {
-//                    // redirect user to login page perhaps or execute callback:
-//                    callback();
-//                    console.log("User's token has expired");
-//                }
-//            });
-            
             
             
             

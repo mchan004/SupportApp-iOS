@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Message.swift
 //  SupportApp
 //
 //  Created by Thanh Tu on 8/10/17.
@@ -8,13 +8,11 @@
 
 
 struct Message {
-    var id: String
+    var idFrom: String
     var idTo: String
     var message: String
+    var attack: String?
+    var created_at: String?
     
-    init(id: String, idTo: String, message: String) {
-        self.id = id
-        self.idTo = idTo
-        self.message = message
-    }
+    
 }

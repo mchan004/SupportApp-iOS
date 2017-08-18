@@ -12,7 +12,7 @@
 		189A46FC1F278644006DF15B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189A46FA1F278644006DF15B /* Main.storyboard */; };
 		189A46FE1F278644006DF15B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189A46FD1F278644006DF15B /* Assets.xcassets */; };
 		189A47011F278644006DF15B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189A46FF1F278644006DF15B /* LaunchScreen.storyboard */; };
-		262A3CD01F3C2A480073929D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262A3CCF1F3C2A470073929D /* File.swift */; };
+		262A3CD01F3C2A480073929D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262A3CCF1F3C2A470073929D /* Message.swift */; };
 		26364B3F1F34B014009319F6 /* SendMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26364B3D1F34B014009319F6 /* SendMessageTableViewCell.swift */; };
 		265812EE1F3039C1003C5F78 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265812ED1F3039C1003C5F78 /* SWRevealViewController.m */; };
 		265812F11F303B11003C5F78 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F01F303B11003C5F78 /* SideMenuTableViewController.swift */; };
@@ -37,7 +37,7 @@
 		189A46FD1F278644006DF15B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		189A47001F278644006DF15B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		189A47021F278644006DF15B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		262A3CCF1F3C2A470073929D /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		262A3CCF1F3C2A470073929D /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		26364B3D1F34B014009319F6 /* SendMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessageTableViewCell.swift; sourceTree = "<group>"; };
 		265812EB1F3039BE003C5F78 /* SupportApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SupportApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		265812EC1F3039C1003C5F78 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				26FE9C6D1F3A143300C1FACB /* UserList.swift */,
-				262A3CCF1F3C2A470073929D /* File.swift */,
+				262A3CCF1F3C2A470073929D /* Message.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -322,7 +322,7 @@
 				189A46F71F278644006DF15B /* AppDelegate.swift in Sources */,
 				265812EE1F3039C1003C5F78 /* SWRevealViewController.m in Sources */,
 				26FE9C6C1F39CD0300C1FACB /* SocketIOManager.swift in Sources */,
-				262A3CD01F3C2A480073929D /* File.swift in Sources */,
+				262A3CD01F3C2A480073929D /* Message.swift in Sources */,
 				26E6B4751F31E44F003D369A /* ProfileViewController.swift in Sources */,
 				265812F11F303B11003C5F78 /* SideMenuTableViewController.swift in Sources */,
 				26FE9C6E1F3A143300C1FACB /* UserList.swift in Sources */,

@@ -18,31 +18,9 @@ class RoomMessageTableViewController: UITableViewController {
         super.viewDidLoad()
         
         let keychain = KeychainSwift()
-//        keychain.clear()
         if keychain.get("token") == nil {
-            
-            
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.switchLogin()
-            
-            
-            
-            
-            
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginController
-//            self.present(vc, animated: true, completion: nil)
-            
-            
-//            if let vc3 = self.storyboard?.instantiateViewController(withIdentifier: "Login") as? LoginController {
-//                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                appDelegate.window?.rootViewController!.present(vc3, animated: true, completion: nil)
-//            }
-            
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let vc = storyboard.instantiateViewController(withIdentifier: "Login")
-            
-//            performSegue(withIdentifier: "Login", sender: self)
-            
         }
         
         if self.revealViewController() != nil {
@@ -59,11 +37,8 @@ class RoomMessageTableViewController: UITableViewController {
             }
         }
         
-        
-        
-        
-        
     }
+    
     
 /////////////////
 ////Tableview////
@@ -94,6 +69,12 @@ class RoomMessageTableViewController: UITableViewController {
         userDefaults.set(userList[indexPath.row].id, forKey: "idCustommerSelected")
     }
     
-    
-
 }
+
+
+////////////////
+////Function////
+////////////////
+
+
+
