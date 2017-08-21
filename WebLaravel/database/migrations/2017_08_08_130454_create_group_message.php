@@ -17,8 +17,10 @@ class CreateGroupMessage extends Migration
           $table->increments('id');
           $table->integer('idUser')->unsigned();
           $table->string('idCustomer');
-
+          $table->string('viewing')->nullable();
           $table->timestamps();
+
+          // $table->foreign('idCustomer')->references('id')->on('users');
       });
     }
 
