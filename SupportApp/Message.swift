@@ -8,7 +8,7 @@
 
 
 struct Message {
-    var idFrom: String
+    var idFrom: String?
     var idTo: String
     var message: String
     var attack: String?

@@ -17,6 +17,17 @@ class RoomMessageTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        setupView()
+        setupTableView()
+        
+    }
+    
+    
+////////////////
+////Function////
+////////////////
+    func setupView() {
         let keychain = KeychainSwift()
         if keychain.get("token") == nil {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -28,7 +39,13 @@ class RoomMessageTableViewController: UITableViewController {
             SideMenu.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        
+    }
+    
+    
+/////////////////
+////Tableview////
+/////////////////
+    func setupTableView() {
         SocketIOManager.sharedInstance.getUserList(userName: "sdf") { (data) in
             self.userList = data
             
@@ -36,14 +53,7 @@ class RoomMessageTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        
     }
-    
-    
-/////////////////
-////Tableview////
-/////////////////
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -67,14 +77,9 @@ class RoomMessageTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userDefaults.set(userList[indexPath.row].id, forKey: "idCustommerSelected")
+        userDefaults.set(userList[indexPath.row].name, forKey: "nameCustommerSelected")
     }
     
+    
+    
 }
-
-
-////////////////
-////Function////
-////////////////
-
-
-

@@ -3,6 +3,7 @@ const server = require ('http').Server(app)
 const io = require('socket.io')(server)
 const socketioJwt = require("socketio-jwt");
 const bodyParser  = require('body-parser');
+const bcrypt = require('bcrypt');
 server.listen(3000, function(){
   console.log('listening on *:3000');
 });
@@ -38,24 +39,51 @@ io.use(socketioJwt.authorize({
 
 io.on("connection", function (socket) {
 
-  socket.id = socket.decoded_token.email
+  socket.id = socket.decoded_token.id
   console.log("connecting: " + socket.decoded_token.email)
 
-  con.query("Select customer.id, customer.name from groupMessage INNER JOIN customer ON groupMessage.idCustomer = customer.id WHERE idUser = ?", [1],
+
+  const id = socket.decoded_token.id
+  const passwd = socket.decoded_token.pw
+  const sql = "SELECT id FROM users WHERE id = ? AND password = ?"
+  const placeholder = [id, passwd]
+  con.query(sql, placeholder,
   function (err, result, fields) {
     if (err) throw err
-    socket.emit("userList", result)
-    // console.log(result);
+    if (result.length == 1) {
+
+      var groupMessages = []
+
+      con.query("Select customer.id, customer.name from groupMessage INNER JOIN customer ON groupMessage.idCustomer = customer.id WHERE idUser = ? ORDER BY groupMessage.updated_at DESC", [1],
+      function (err, result, fields) {
+        if (err) throw err
+        groupMessages = result
+        socket.emit("userList", result)
+      })
+
+
+      socket.on('sendchat', function(data) {
+        con.query("INSERT INTO chatlog (idFrom, idTo, message, created_at) VALUE (?, ?, ?, NOW())",
+        [socket.id, data.idTo, data.message],
+        function (err, result, fields) {
+          if (err) throw err
+          //Handle sent to Customer
+          // socket.emit("...", result)
+        })
+        console.log(data);
+      })
+
+
+
+    } else {
+      socket.disconnect()
+    }
   })
 
   socket.on('disconnect', function(){
-    console.log('user disconnected' + socket.id)
+    console.log('disconnected: ' + socket.id)
 
   });
-
-
-
-
 })
 
 
@@ -77,7 +105,7 @@ const mid = function(req, res, next) {
       else {
         const id = decoded.id
         const passwd = decoded.pw
-        const sql = "Select id FROM users WHERE id = ? AND password = ?"
+        const sql = "SELECT id FROM users WHERE id = ? AND password = ?"
         const placeholder = [id, passwd]
         req.id = id
         con.query(sql, placeholder,
@@ -108,26 +136,29 @@ app.post("/getChatlog", mid, function(req,res) {
 
 
 
+
 app.post("/login", function (req, res) {
   const username = req.body.username
   const password = req.body.password
-  const sql = "Select * FROM users WHERE email = ? AND password = ?"
-  const placeholder = [username, password]
+  const sql = "Select * FROM users WHERE email = ?"
+  const placeholder = [username]
   con.query(sql, placeholder,
   function (err, result, fields) {
     if (err) throw err
     if (result.length == 1) {
-      const token = jwt.sign({id: result[0].id, email: result[0].email, pw: result[0].password}, secret)
-      const myObj = { "code": 1, "token": token};
-      res.json(myObj)
-      const sql = "UPDATE users SET remember_token = ? WHERE email = ?";
-      const placeholder = [token, username]
-      con.query(sql, placeholder, function (err, result) {
-        if (err) throw err;
-      });
+      //Change password to type Laravel
+      var coded = (result[0].password).replace('$2y$', '$2a$')
+      if ( bcrypt.compareSync(password, coded) ) {
+        const token = jwt.sign({id: result[0].id, email: result[0].email, pw: result[0].password}, secret)
+        const myObj = { "code": 1, "token": token};
+        res.json(myObj)
+      } else {
+        const myObj = { "code": 0, "mess": "Sai pass" }
+        res.json(myObj)
+      }
 
     } else {
-      const myObj = { "code": 0 };
+      const myObj = { "code": 0, "mess": "Chua dk tai khoan"}
       res.json(myObj)
     }
   })

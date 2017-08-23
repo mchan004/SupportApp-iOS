@@ -49,6 +49,18 @@ class SocketIOManager: NSObject {
         
     }
     
+    
+    
+    func sendchat(idTo: String, message: String) {
+        
+        let dic: [String: String] = ["idTo": idTo, "message": message]
+        self.socket.emit("sendchat", dic)
+        
+        
+    }
+    
+    
+    
     func getUserList(userName: String, completionHandler: @escaping (_ userList: [UserList]) -> Void) {
         socket.on("userList") { ( dataArray, ack) -> Void in
             let dataun = dataArray[0] as! [[String: AnyObject]]
@@ -63,11 +75,13 @@ class SocketIOManager: NSObject {
     }
     
     
-    func getChatLog(idCustomer: String, completionHandler: @escaping () -> Void) {
-        socket.on("userList") { ( dataArray, ack) -> Void in
-            
-        }
-    }
+    
+    
+    
+    
+    
+    
+    
     
     
     func connectToServerWithNickname(nickname: String, completionHandler: @escaping (_ userList: [[String: AnyObject]]?) -> Void) {

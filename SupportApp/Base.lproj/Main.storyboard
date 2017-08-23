@@ -329,7 +329,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BR2-Pb-S2O">
-                                            <rect key="frame" x="8" y="4" width="59" height="59"/>
+                                            <rect key="frame" x="8" y="4" width="59" height="58"/>
                                             <color key="backgroundColor" red="0.58809357881546021" green="0.82563179731369019" blue="0.76503652334213257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="59" id="VUw-Rj-E4n"/>
@@ -545,8 +545,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="4Ky-p1-YWc">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="1oU-PE-Ttr">
-                            <rect key="frame" x="77" y="-0.5" width="260" height="45"/>
+                        <view key="titleView" contentMode="bottomRight" id="1oU-PE-Ttr">
+                            <rect key="frame" x="77" y="0.0" width="260" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanh Tu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdh-fu-Cod">
@@ -573,6 +573,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="messageTextField" destination="E9E-nz-Np8" id="sSl-yq-so5"/>
+                        <outlet property="nameNavigation" destination="vdh-fu-Cod" id="Qxd-LQ-m3C"/>
                         <outlet property="tableViewSMS" destination="OBf-NX-lTL" id="gFy-0W-ZHR"/>
                         <outlet property="textBottomLayout" destination="CJk-DD-dyp" id="mhd-6c-8bs"/>
                     </connections>
@@ -637,7 +638,7 @@
                                         <rect key="frame" x="0.0" y="200" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="388-KD-m3D" id="aL1-bU-ZoX">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="Nbx-sW-XgZ">
@@ -670,7 +671,7 @@
                                         <rect key="frame" x="0.0" y="244" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="35E-7f-roc" id="iud-co-wKp">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exit" translatesAutoresizingMaskIntoConstraints="NO" id="li2-1f-bgs">

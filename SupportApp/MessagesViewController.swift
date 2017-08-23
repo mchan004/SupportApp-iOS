@@ -17,6 +17,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
     @IBOutlet weak var tableViewSMS: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var textBottomLayout: NSLayoutConstraint!
+    @IBOutlet weak var nameNavigation: UILabel!
     let userDefaults = UserDefaults()
     var idCus: String = ""
     var messages: [Message] = []
@@ -56,6 +57,8 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         backButton.addTarget(self, action: #selector(self.backButton), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         
+        let nameCustomer = userDefaults.object(forKey: "nameCustommerSelected") as! String
+        nameNavigation.text = nameCustomer
     }
     
     
@@ -168,8 +171,12 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         if messageTextField.text! == "" {
             return
         }
+        SocketIOManager.sharedInstance.sendchat(idTo: idCus, message: messageTextField.text!)
         
-//        socket.emit("send_message", ["mess": messageTextField.text!])
+        
+        let M: Message = Message(idFrom: nil, idTo: idCus, message: messageTextField.text!, attack: nil, created_at: nil)
+        messages.append(M)
+        tableViewReloadData()
         
         messageTextField.text = nil
         
@@ -209,7 +216,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
                     
                     for j in json {
                         
-                        let message = Message(idFrom: j["idFrom"] as! String, idTo: j["idTo"] as! String, message: j["message"] as! String, attack: j["attack"] as? String, created_at: j["created_at"] as? String)
+                        let message = Message(idFrom: j["idFrom"] as? String, idTo: j["idTo"] as! String, message: j["message"] as! String, attack: j["attack"] as? String, created_at: j["created_at"] as? String)
                         self.messages.append(message)
                     }
                     
