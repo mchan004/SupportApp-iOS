@@ -14,6 +14,7 @@
 		189A47011F278644006DF15B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 189A46FF1F278644006DF15B /* LaunchScreen.storyboard */; };
 		262A3CD01F3C2A480073929D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262A3CCF1F3C2A470073929D /* Message.swift */; };
 		26364B3F1F34B014009319F6 /* SendMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26364B3D1F34B014009319F6 /* SendMessageTableViewCell.swift */; };
+		26532BAD1F4D50810049F39B /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26532BAC1F4D50800049F39B /* HttpRequest.swift */; };
 		265812EE1F3039C1003C5F78 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265812ED1F3039C1003C5F78 /* SWRevealViewController.m */; };
 		265812F11F303B11003C5F78 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F01F303B11003C5F78 /* SideMenuTableViewController.swift */; };
 		265812F31F303BAB003C5F78 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F21F303BAB003C5F78 /* SideMenuTableViewCell.swift */; };
@@ -39,6 +40,7 @@
 		189A47021F278644006DF15B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		262A3CCF1F3C2A470073929D /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		26364B3D1F34B014009319F6 /* SendMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendMessageTableViewCell.swift; sourceTree = "<group>"; };
+		26532BAC1F4D50800049F39B /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
 		265812EB1F3039BE003C5F78 /* SupportApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SupportApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		265812EC1F3039C1003C5F78 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		265812ED1F3039C1003C5F78 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				189A47021F278644006DF15B /* Info.plist */,
 				2695316F1F376B25008D4617 /* Extension.swift */,
 				26FE9C6B1F39CD0300C1FACB /* SocketIOManager.swift */,
+				26532BAC1F4D50800049F39B /* HttpRequest.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				189A46F91F278644006DF15B /* LoginController.swift in Sources */,
 				269531701F376B25008D4617 /* Extension.swift in Sources */,
 				26CC49B31F32FD400015E078 /* MessagesViewController.swift in Sources */,
+				26532BAD1F4D50810049F39B /* HttpRequest.swift in Sources */,
 				265812F71F303EFC003C5F78 /* RoomMessageTableViewCell.swift in Sources */,
 				26A163A01F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift in Sources */,
 				189A46F71F278644006DF15B /* AppDelegate.swift in Sources */,

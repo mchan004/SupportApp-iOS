@@ -101,7 +101,10 @@ const mid = function(req, res, next) {
   const token = req.body.token || req.query.token || req.headers['x-access-token'];
   if (token){
     jwt.verify(token, secret, function(err, decoded){
-      if(err) res.send("err: " + err)
+      if(err) {
+        const myObj = { "code": 0, "mess": err}
+        res.json(myObj)
+      }
       else {
         const id = decoded.id
         const passwd = decoded.pw
@@ -113,6 +116,9 @@ const mid = function(req, res, next) {
           if (err) throw err
           if (result.length == 1) {
             next()
+          } else {
+            const myObj = { "code": 0, "mess": "Token sai password"}
+            res.json(myObj)
           }
         })
       }

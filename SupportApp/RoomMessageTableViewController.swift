@@ -27,11 +27,14 @@ class RoomMessageTableViewController: UITableViewController {
 ////////////////
 ////Function////
 ////////////////
+    func pushToLogin() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.switchLogin()
+    }
     func setupView() {
         let keychain = KeychainSwift()
         if keychain.get("token") == nil {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.switchLogin()
+            pushToLogin()
         }
         
         if self.revealViewController() != nil {

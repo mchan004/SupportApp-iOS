@@ -12,11 +12,17 @@ import KeychainSwift
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
     
-    override init() {
-        super.init()
-    }
+//    override init() {
+//        super.init()
+//    }
     
     var socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!)
+    
+    
+    func pushToLogin() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.switchLogin()
+    }
     
     func establishConnection() {
         
@@ -43,9 +49,7 @@ class SocketIOManager: NSObject {
     
     func closeConnection() {
         
-        
         socket.disconnect()
-        
         
     }
     

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import KeychainSwift
 
 class LoginController: UIViewController {
@@ -22,41 +21,28 @@ class LoginController: UIViewController {
             alert()
             return
         }
-        
-        let parameters: Parameters = ["username": username.text!, "password": password.text!]
-        Alamofire.request(AllConfig().myWebsite + "/login", method: .post, parameters: parameters).responseJSON { response in
-            
-            
-            if let data = response.data {
-                print(data)
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                    if let code: Int = json["code"] as? Int {
-                        if code == 1 {
-                            if let mess: String = json["token"] as? String {
-                                self.keychain.set(mess, forKey: "token")
-                                if let name = json["name"] as? String {
-                                    self.keychain.set(name, forKey: "userName")
-                                }
-                                SocketIOManager.sharedInstance.establishConnection()
-
-                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                                appDelegate.switchHome()
-                                
-                            }
-                        } else {
-                            self.alert()
+        let httpRQ = HttpRequest()
+        httpRQ.login(username: username.text!, password: password.text!) { (data) in
+            if let code: Int = data["code"] as? Int {
+                if code == 1 {
+                    if let mess: String = data["token"] as? String {
+                        self.keychain.set(mess, forKey: "token")
+                        if let name = data["name"] as? String {
+                            self.keychain.set(name, forKey: "userName")
                         }
+                        SocketIOManager.sharedInstance.establishConnection()
+                        
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.switchHome()
                         
                     }
-                    
-                    
-                } catch {
-                    print("Error deserializing JSON: \(error)")
+                } else {
+                    self.alert()
                 }
                 
             }
         }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()

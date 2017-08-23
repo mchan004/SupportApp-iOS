@@ -8,8 +8,8 @@
 
 import UIKit
 import SocketIO
-import Alamofire
-import KeychainSwift
+
+
 
 class MessagesViewController: UIViewController, UITableViewDataSource,UITableViewDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
 
@@ -195,44 +195,11 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
     }
     
     func getChatlog() {
-        let keychain = KeychainSwift()
-        let token = keychain.get("token")
-        
-        let headers: HTTPHeaders = [
-            "x-access-token": token!
-        ]
-        
-        let parameters: Parameters = [
-            "idCus": idCus
-        ]
-        
-        
-        Alamofire.request(AllConfig().myWebsite + "/getChatlog", method: .post, parameters: parameters, headers: headers).response { response in
-            if let data = response.data {
-                
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any]]
-                    
-                    
-                    for j in json {
-                        
-                        let message = Message(idFrom: j["idFrom"] as? String, idTo: j["idTo"] as! String, message: j["message"] as! String, attack: j["attack"] as? String, created_at: j["created_at"] as? String)
-                        self.messages.append(message)
-                    }
-                    
-                    self.tableViewReloadData()
-
-                    
-                } catch {
-                    print("Error deserializing JSON: \(error)")
-                }
-                
-                
-            }
+        let httpRequest = HttpRequest()
+        httpRequest.getChatlog(idCus: idCus) { (data) in
+            self.messages = data
+            self.tableViewReloadData()
         }
-        
-        
-        
         
     }
     
