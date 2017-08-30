@@ -17,7 +17,14 @@ extension UIApplication {
 
 
 class AllConfig {
-//    let myWebsite = "http://172.30.0.252:3000"
-    let myWebsite = "http://192.168.1.199:3000"
+//    let myWebsite = "http://169.254.102.85:3000"
+    let myWebsite = "http://192.168.1.105:3000"
     
+}
+
+class AlertHelper {
+    func showAlert(fromController controller: UIViewController) {
+        let alert = UIAlertController(title: "abc", message: "def", preferredStyle: .alert)
+        controller.present(alert, animated: true, completion: nil)
+    }
 }

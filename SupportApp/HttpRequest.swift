@@ -74,22 +74,7 @@ class HttpRequest {
     
     
     func login(username: String, password: String, completionHandler: @escaping (_ messages: [String: Any]) -> Void) {
-        let parameters: Parameters = ["username": username, "password": password]
-        Alamofire.request(AllConfig().myWebsite + "/login", method: .post, parameters: parameters).responseJSON { response in
-            
-            if let data = response.data {
-                print(data)
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                    
-                    completionHandler(json)
-                    
-                } catch {
-                    print("Error deserializing JSON: \(error)")
-                }
-                
-            }
-        }
+        
     }
     
 }

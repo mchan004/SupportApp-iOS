@@ -11,13 +11,7 @@ import KeychainSwift
 
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
-    
-//    override init() {
-//        super.init()
-//    }
-    
     var socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!)
-    
     
     func pushToLogin() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -31,7 +25,6 @@ class SocketIOManager: NSObject {
             socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!, config: SocketIOClientConfiguration(arrayLiteral: SocketIOClientOption.connectParams(["token": token])))
             
             socket.connect()
-            
             socket.on("error") { ( error, ack) -> Void in
                 let alert = UIAlertController(title: "User's token has expired!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Let me login again", style: UIAlertActionStyle.default, handler: nil))
@@ -39,7 +32,15 @@ class SocketIOManager: NSObject {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.switchHome()
             }
-            
+            socket.on("connect", callback: { (data, ack) in
+                self.socket.emit("authenticate", token)
+            })
+            socket.on("authenticated", callback: { (data, ack) in
+                print("authenticated")
+            })
+            socket.on("unauthorized", callback: { (data, ack) in
+                print("unauthorized")
+            })
             
             
         }

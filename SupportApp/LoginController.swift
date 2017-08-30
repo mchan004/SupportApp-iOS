@@ -8,6 +8,7 @@
 
 import UIKit
 import KeychainSwift
+import Alamofire
 
 class LoginController: UIViewController {
 
@@ -21,23 +22,41 @@ class LoginController: UIViewController {
             alert()
             return
         }
-        let httpRQ = HttpRequest()
-        httpRQ.login(username: username.text!, password: password.text!) { (data) in
-            if let code: Int = data["code"] as? Int {
-                if code == 1 {
-                    if let mess: String = data["token"] as? String {
-                        self.keychain.set(mess, forKey: "token")
-                        if let name = data["name"] as? String {
-                            self.keychain.set(name, forKey: "userName")
+        
+        
+        
+        let parameters: Parameters = ["username": username.text!, "password": password.text!]
+        Alamofire.request(AllConfig().myWebsite + "/login", method: .post, parameters: parameters).responseJSON { response in
+            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                print("Data: \(utf8Text)")
+            }
+            if let data = response.data {
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                    
+                    if let code: Int = json["code"] as? Int {
+                        if code == 1 {
+                            if let mess: String = json["token"] as? String {
+                                self.keychain.set(mess, forKey: "token")
+                                if let name = json["name"] as? String {
+                                    self.keychain.set(name, forKey: "userName")
+                                }
+                                SocketIOManager.sharedInstance.establishConnection()
+                                
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                appDelegate.switchHome()
+                                
+                            }
+                        } else {
+                            self.alert()
                         }
-                        SocketIOManager.sharedInstance.establishConnection()
-                        
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.switchHome()
                         
                     }
-                } else {
-                    self.alert()
+
+                    
+                } catch {
+                    print("Error deserializing JSON: \(error)")
                 }
                 
             }
