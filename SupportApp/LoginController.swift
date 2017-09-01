@@ -11,7 +11,7 @@ import KeychainSwift
 import Alamofire
 
 class LoginController: UIViewController {
-
+    
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -23,13 +23,9 @@ class LoginController: UIViewController {
             return
         }
         
-        
-        
         let parameters: Parameters = ["username": username.text!, "password": password.text!]
         Alamofire.request(AllConfig().myWebsite + "/login", method: .post, parameters: parameters).responseJSON { response in
-            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                print("Data: \(utf8Text)")
-            }
+            
             if let data = response.data {
                 
                 do {
@@ -53,7 +49,7 @@ class LoginController: UIViewController {
                         }
                         
                     }
-
+                    
                     
                 } catch {
                     print("Error deserializing JSON: \(error)")
@@ -81,7 +77,7 @@ class LoginController: UIViewController {
         logoImage.image = #imageLiteral(resourceName: "logo_end").withRenderingMode(.alwaysTemplate)
         
     }
-
+    
     func alert() {
         let alert = UIAlertController(title: "Something wrong here!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Let me check again", style: UIAlertActionStyle.default, handler: nil))

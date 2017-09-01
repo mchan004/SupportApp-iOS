@@ -26,11 +26,7 @@ class SocketIOManager: NSObject {
             
             socket.connect()
             socket.on("error") { ( error, ack) -> Void in
-                let alert = UIAlertController(title: "User's token has expired!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Let me login again", style: UIAlertActionStyle.default, handler: nil))
                 
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.switchHome()
             }
             socket.on("connect", callback: { (data, ack) in
                 self.socket.emit("authenticate", token)
@@ -40,6 +36,7 @@ class SocketIOManager: NSObject {
             })
             socket.on("unauthorized", callback: { (data, ack) in
                 print("unauthorized")
+                RoomMessageTableViewController().pushToLogin()
             })
             
             

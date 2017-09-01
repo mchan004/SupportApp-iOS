@@ -75,10 +75,10 @@ app.use(bodyParser.json());
 //
 //
 //
-//   //   } else {
-//   //     socket.disconnect()
-//   //   }
-//   // })
+//   } else {
+//     socket.disconnect()
+//   }
+// })
 //
 //   socket.on('disconnect', function(){
 //     console.log('disconnected: ' + socket.id)
@@ -103,7 +103,6 @@ io.on('connection', function(socket) {
   socket.on('authenticate', function(data) {
 
     if (data != null){
-      console.log("authenticating2");
       jwt.verify(data, secret, function(err, decoded){
         if(err) {
           socket.emit('unauthorized', {"err": "invalid token"})
@@ -120,7 +119,9 @@ io.on('connection', function(socket) {
             if (result.length == 1) {
               socket.emit('authenticated', {"win": 0})
             } else {
-              socket.emit('unauthorized', {"err": "token expred"})
+              socket.emit('unauthorized', {"err": "token expred"}, function() {
+                socket.disconnect()
+              })
             }
           })
         }

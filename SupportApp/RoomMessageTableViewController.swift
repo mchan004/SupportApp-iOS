@@ -10,7 +10,7 @@ import UIKit
 import KeychainSwift
 
 class RoomMessageTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var SideMenu: UIBarButtonItem!
     let userDefaults = UserDefaults()
     var userList: [UserList] = []
@@ -24,9 +24,9 @@ class RoomMessageTableViewController: UITableViewController {
     }
     
     
-////////////////
-////Function////
-////////////////
+    ////////////////
+    ////Function////
+    ////////////////
     func pushToLogin() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.switchLogin()
@@ -45,9 +45,9 @@ class RoomMessageTableViewController: UITableViewController {
     }
     
     
-/////////////////
-////Tableview////
-/////////////////
+    /////////////////
+    ////Tableview////
+    /////////////////
     func setupTableView() {
         SocketIOManager.sharedInstance.getUserList(userName: "sdf") { (data) in
             self.userList = data
@@ -62,21 +62,19 @@ class RoomMessageTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return userList.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RoomMessageTableViewCell
-
+        
         // Configure the cell...
         cell.user = userList[indexPath.row]
         return cell
     }
- 
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 67
     }
-    
-    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userDefaults.set(userList[indexPath.row].id, forKey: "idCustommerSelected")
