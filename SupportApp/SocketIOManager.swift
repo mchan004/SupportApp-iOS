@@ -46,26 +46,21 @@ class SocketIOManager: NSObject {
     
     
     func closeConnection() {
-        
         socket.disconnect()
-        
     }
     
     
     
     func sendchat(idTo: String, message: String) {
-        
         let dic: [String: String] = ["idTo": idTo, "message": message]
         self.socket.emit("sendchat", dic)
-        
-        
     }
     
     
     
-    func getUserList(userName: String, completionHandler: @escaping (_ userList: [UserList]) -> Void) {
+    func getUserList(completionHandler: @escaping (_ userList: [UserList]) -> Void) {
         socket.on("userList") { ( dataArray, ack) -> Void in
-            let dataun = dataArray[0] as! [[String: AnyObject]]
+            let dataun = dataArray.first as! [[String: AnyObject]]
             var usersList: [UserList] = []
             for data in dataun {
                 
@@ -76,7 +71,15 @@ class SocketIOManager: NSObject {
         }
     }
     
-    
+    func receiveChatMessage(completionHandler: @escaping (_ userList: Message) -> Void) {
+        
+        socket.on("sendchat") { ( data, ack) -> Void in
+            let json = data.first as! [String: Any]
+            let m: Message = Message(idFrom: json["idFrom"] as? String, idTo: json["idTo"]! as! String, message: json["message"]! as! String, attack: nil, created_at: json["created_at"] as? String)
+            print(json["message"]!)
+            completionHandler(m)
+        }
+    }
     
     
     
@@ -105,18 +108,6 @@ class SocketIOManager: NSObject {
     
     func sendMessage(message: String, withNickname nickname: String) {
         socket.emit("chatMessage", nickname, message)
-    }
-    
-    
-    func getChatMessage(completionHandler: @escaping (_ messageInfo: [String: String]) -> Void) {
-        socket.on("newChatMessage") { (dataArray, socketAck) -> Void in
-            var messageDictionary = [String: String]()
-            messageDictionary["nickname"] = dataArray[0] as? String
-            messageDictionary["message"] = dataArray[1] as? String
-            messageDictionary["date"] = dataArray[2] as? String
-            
-            completionHandler(messageDictionary)
-        }
     }
     
     

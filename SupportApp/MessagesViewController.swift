@@ -75,6 +75,13 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         tableViewSMS.estimatedRowHeight = 20
         tableViewSMS.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0)
         
+        
+        SocketIOManager.sharedInstance.receiveChatMessage { (data) in
+            self.messages.append(data)
+            self.tableViewReloadData()
+        }
+        
+        
     }
     
     

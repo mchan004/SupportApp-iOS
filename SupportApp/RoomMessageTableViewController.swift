@@ -49,7 +49,7 @@ class RoomMessageTableViewController: UITableViewController {
     ////Tableview////
     /////////////////
     func setupTableView() {
-        SocketIOManager.sharedInstance.getUserList(userName: "sdf") { (data) in
+        SocketIOManager.sharedInstance.getUserList { (data) in
             self.userList = data
             
             DispatchQueue.main.async() {

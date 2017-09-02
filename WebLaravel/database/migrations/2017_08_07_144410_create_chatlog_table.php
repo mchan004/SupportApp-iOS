@@ -17,6 +17,7 @@ class CreateChatlogTable extends Migration
           $table->increments('id');
           $table->string('idFrom');
           $table->string('idTo');
+          $table->string('room');
           $table->string('message');
           $table->string('attack')->nullable();
           $table->timestamps();

@@ -32,76 +32,12 @@ app.use(bodyParser.json());
 ////Socket.io////
 /////////////////
 
-// io.use(socketioJwt.authorize({
-//   secret: secret,
-//   handshake: true
-// }));
-//
-// io.on("connection", function (socket) {
-//
-//   socket.id = socket.decoded_token.id
-//   console.log("connecting: " + socket.decoded_token.email)
-//
-//
-//   // const id = socket.decoded_token.id
-//   // const passwd = socket.decoded_token.pw
-//   // const sql = "SELECT id FROM users WHERE id = ? AND password = ?"
-//   // const placeholder = [id, passwd]
-//   // con.query(sql, placeholder,
-//   // function (err, result, fields) {
-//   //   if (err) throw err
-//   //   if (result.length == 1) {
-//
-//   var groupMessages = []
-//
-//   con.query("Select customer.id, customer.name from groupMessage INNER JOIN customer ON groupMessage.idCustomer = customer.id WHERE idUser = ? ORDER BY groupMessage.updated_at DESC", [1],
-//   function (err, result, fields) {
-//     if (err) throw err
-//     groupMessages = result
-//     socket.emit("userList", result)
-//   })
-//
-//
-//   socket.on('sendchat', function(data) {
-//     con.query("INSERT INTO chatlog (idFrom, idTo, message, created_at) VALUE (?, ?, ?, NOW())",
-//     [socket.id, data.idTo, data.message],
-//     function (err, result, fields) {
-//       if (err) throw err
-//       //Handle sent to Customer
-//       // socket.emit("...", result)
-//     })
-//     console.log(data);
-//   })
-//
-//
-//
-//   } else {
-//     socket.disconnect()
-//   }
-// })
-//
-//   socket.on('disconnect', function(){
-//     console.log('disconnected: ' + socket.id)
-//
-//   });
-// })
-
-// io
-// 	.on('connection', socketioJwt.authorize({
-// 		secret: secret,
-// 		timeout: 15000 // 15 seconds to send the authentication message
-// 	}))
-// 	.on('authenticated', function(socket){
-// 		console.log('connected & authenticated: ' + JSON.stringify(socket.decoded_token));
-// 		// socket.on('chat message', function(msg){
-// 		// 	debugger;
-// 		// 	io.emit('chat message', msg);
-// 		// });
-// 	});
 io.on('connection', function(socket) {
+  var groupMessages = []
+  console.log("connected: " + socket.id);
+
   socket.emit('connect', socket.id)
   socket.on('authenticate', function(data) {
-
     if (data != null){
       jwt.verify(data, secret, function(err, decoded){
         if(err) {
@@ -109,15 +45,23 @@ io.on('connection', function(socket) {
         }
         else {
           const id = decoded.id
+          socket.id = id
           const passwd = decoded.pw
           const sql = "SELECT id FROM users WHERE id = ? AND password = ?"
           const placeholder = [id, passwd]
-
           con.query(sql, placeholder,
           function (err, result, fields) {
             if (err) throw err
             if (result.length == 1) {
               socket.emit('authenticated', {"win": 0})
+              const sql = "SELECT cu.id, cu.name, c.created_at FROM customer as cu INNER JOIN chatlog as c ON (cu.id=c.idFrom OR cu.id=c.idTo) INNER JOIN users as u ON (c.idFrom=u.id OR c.idTo=u.id) WHERE u.id=? GROUP BY cu.name ORDER BY c.created_at DESC"
+              con.query(sql, [1],
+              function (err, result, fields) {
+                if (err) throw err
+                groupMessages = result
+
+                socket.emit("userList", result)
+              })
             } else {
               socket.emit('unauthorized', {"err": "token expred"}, function() {
                 socket.disconnect()
@@ -128,6 +72,34 @@ io.on('connection', function(socket) {
       })
     }
   })
+
+  var chosseSupporter = ''
+  socket.on('choose supporter', function(data) {
+    socket.join(data)
+    chosseSupporter = data
+    console.log(data);
+  })
+  socket.join('3')
+  socket.on('customerSendMessage', function(data) {
+
+    const mess = {'idTo': chosseSupporter, 'idFrom': socket.id, 'message': data, 'datetime': Date.now()}
+    console.log(mess);
+    io.to(chosseSupporter).emit('sendchat', mess);
+  })
+
+
+  socket.on('sendchat', function(data) {
+    con.query("INSERT INTO chatlog (idFrom, idTo, message, created_at) VALUE (?, ?, ?, NOW())",
+    [socket.id, data.idTo, data.message],
+    function (err, result, fields) {
+      if (err) throw err
+      //Handle sent to Customer
+      // socket.emit("...", result)
+    })
+  })
+
+
+
 
   socket.on('disconnect', function(){
     console.log('disconnected: ' + socket.id)
@@ -171,7 +143,6 @@ const mid = function(req, res, next) {
   }
 }
 
-
 app.post("/getChatlog", mid, function(req,res) {
   const id = req.id
   const idCus = req.body.idCus
@@ -180,13 +151,9 @@ app.post("/getChatlog", mid, function(req,res) {
   con.query(sql, placeholder,
   function (err, result, fields) {
     if (err) throw err
-    console.log(result);
     res.json(result);
   })
 })
-
-
-
 
 app.post("/login", function (req, res) {
   const username = req.body.username
