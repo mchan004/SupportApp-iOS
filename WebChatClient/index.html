@@ -6,7 +6,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <script src="http://192.168.1.199:3000/socket.io/socket.io.js"></script>
+      <script src="http://localhost:3000/socket.io/socket.io.js"></script>
       <style media="screen">
          .chat
          {
@@ -71,7 +71,7 @@
 
 
         $(document).ready(function() {
-          var socket = io("http://192.168.1.199:3000/");
+          var socket = io("http://localhost:3000/");
           // socket.on("server_gui_room_vua_tao", function(data) {
           //   var s = "<li room='"+ data +"'>"+data+"</li>";
           //   $("#roomlist").append(s);
@@ -95,7 +95,7 @@
             mess += m;
             mess += '</p></div></li>';
             $(".chat").append(mess);
-            socket.emit('customerSendMessage', m);
+            socket.emit('FromCustomerSendMessage', m);
             reload();
           }
 

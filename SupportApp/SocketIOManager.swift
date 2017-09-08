@@ -12,14 +12,16 @@ import KeychainSwift
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
     var socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!)
+    var usersList: [UserList] = []
+    
     
     func pushToLogin() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.switchLogin()
     }
     
+    
     func establishConnection() {
-        
         let keychain = KeychainSwift()
         if let token = keychain.get("token") {
             socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!, config: SocketIOClientConfiguration(arrayLiteral: SocketIOClientOption.connectParams(["token": token])))
@@ -38,10 +40,7 @@ class SocketIOManager: NSObject {
                 print("unauthorized")
                 RoomMessageTableViewController().pushToLogin()
             })
-            
-            
         }
-        
     }
     
     
@@ -50,10 +49,9 @@ class SocketIOManager: NSObject {
     }
     
     
-    
     func sendchat(idTo: String, message: String) {
         let dic: [String: String] = ["idTo": idTo, "message": message]
-        self.socket.emit("sendchat", dic)
+        self.socket.emit("FromSupporterSendMessage", dic)
     }
     
     
@@ -61,77 +59,21 @@ class SocketIOManager: NSObject {
     func getUserList(completionHandler: @escaping (_ userList: [UserList]) -> Void) {
         socket.on("userList") { ( dataArray, ack) -> Void in
             let dataun = dataArray.first as! [[String: AnyObject]]
-            var usersList: [UserList] = []
             for data in dataun {
-                
                 let u = UserList(id: data["id"] as! String, name: data["name"] as? String, date: data[""] as? String)
-                usersList.append(u)
+                self.usersList.append(u)
             }
-            completionHandler(usersList)
+            completionHandler(self.usersList)
         }
+        receiveChatMessage()
     }
     
-    func receiveChatMessage(completionHandler: @escaping (_ userList: Message) -> Void) {
-        
-        socket.on("sendchat") { ( data, ack) -> Void in
+    fileprivate func receiveChatMessage() {
+        socket.on("FromCustomerSendMessage") { ( data, ack) -> Void in
             let json = data.first as! [String: Any]
             let m: Message = Message(idFrom: json["idFrom"] as? String, idTo: json["idTo"]! as! String, message: json["message"]! as! String, attack: nil, created_at: json["created_at"] as? String)
-            print(json["message"]!)
-            completionHandler(m)
+            
+            NotificationCenter.default.post(name: Notification.Name.init(rawValue: "ReceiveMessage"), object: m)
         }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    func connectToServerWithNickname(nickname: String, completionHandler: @escaping (_ userList: [[String: AnyObject]]?) -> Void) {
-        socket.emit("connectUser", nickname)
-        
-        socket.on("userList") { ( dataArray, ack) -> Void in
-            completionHandler(dataArray[0] as? [[String: AnyObject]])
-        }
-        
-        listenForOtherMessages()
-    }
-    
-    
-    func exitChatWithNickname(nickname: String, completionHandler: () -> Void) {
-        socket.emit("exitUser", nickname)
-        completionHandler()
-    }
-    
-    
-    func sendMessage(message: String, withNickname nickname: String) {
-        socket.emit("chatMessage", nickname, message)
-    }
-    
-    
-    private func listenForOtherMessages() {
-        socket.on("userConnectUpdate") { (dataArray, socketAck) -> Void in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userWasConnectedNotification"), object: dataArray[0] as! [String: AnyObject])
-        }
-        
-        socket.on("userExitUpdate") { (dataArray, socketAck) -> Void in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userWasDisconnectedNotification"), object: dataArray[0] as! String)
-        }
-        
-        socket.on("userTypingUpdate") { (dataArray, socketAck) -> Void in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userTypingNotification"), object: dataArray[0] as? [String: AnyObject])
-        }
-    }
-    
-    
-    func sendStartTypingMessage(nickname: String) {
-        socket.emit("startType", nickname)
-    }
-    
-    
-    func sendStopTypingMessage(nickname: String) {
-        socket.emit("stopType", nickname)
     }
 }

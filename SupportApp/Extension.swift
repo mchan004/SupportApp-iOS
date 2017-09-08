@@ -18,7 +18,7 @@ extension UIApplication {
 
 class AllConfig {
 //    let myWebsite = "http://169.254.102.85:3000"
-    let myWebsite = "http://192.168.1.199:3000"
+    let myWebsite = "http://192.168.1.101:3000"
     
 }
 

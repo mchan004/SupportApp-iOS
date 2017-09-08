@@ -36,6 +36,33 @@ io.on('connection', function(socket) {
   var groupMessages = []
   console.log("connected: " + socket.id);
 
+
+  var chosseSupporter = ''
+  socket.on('choose supporter', function(data) {
+    // socket.join(data)
+    chosseSupporter = data
+  })
+
+  socket.on('FromCustomerSendMessage', function(data) {
+    const mess = {'idTo': chosseSupporter, 'idFrom': socket.id, 'message': data, 'datetime': Date.now()}
+    console.log(mess);
+    io.to(chosseSupporter).emit('FromCustomerSendMessage', mess)
+  })
+
+
+  socket.on('FromSupporterSendMessage', function(data) {
+    con.query("INSERT INTO chatlog (idFrom, idTo, message, created_at) VALUE (?, ?, ?, NOW())",
+    [socket.id, data.idTo, data.message],
+    function (err, result, fields) {
+      if (err) throw err
+      //Handle sent to Customer
+      // socket.emit("...", result)
+    })
+  })
+
+
+
+  // validate token
   socket.emit('connect', socket.id)
   socket.on('authenticate', function(data) {
     if (data != null){
@@ -44,22 +71,20 @@ io.on('connection', function(socket) {
           socket.emit('unauthorized', {"err": "invalid token"})
         }
         else {
-          const id = decoded.id
-          socket.id = id
-          const passwd = decoded.pw
+          const idSQL = decoded.id
+          socket.idSQL = idSQL
           const sql = "SELECT id FROM users WHERE id = ? AND password = ?"
-          const placeholder = [id, passwd]
+          const placeholder = [idSQL, decoded.pw]
           con.query(sql, placeholder,
           function (err, result, fields) {
             if (err) throw err
             if (result.length == 1) {
               socket.emit('authenticated', {"win": 0})
               const sql = "SELECT cu.id, cu.name, c.created_at FROM customer as cu INNER JOIN chatlog as c ON (cu.id=c.idFrom OR cu.id=c.idTo) INNER JOIN users as u ON (c.idFrom=u.id OR c.idTo=u.id) WHERE u.id=? GROUP BY cu.name ORDER BY c.created_at DESC"
-              con.query(sql, [1],
-              function (err, result, fields) {
+              con.query(sql, [1], function (err, result, fields) {
                 if (err) throw err
                 groupMessages = result
-
+                socket.join(idSQL)
                 socket.emit("userList", result)
               })
             } else {
@@ -72,35 +97,6 @@ io.on('connection', function(socket) {
       })
     }
   })
-
-  var chosseSupporter = ''
-  socket.on('choose supporter', function(data) {
-    socket.join(data)
-    chosseSupporter = data
-    console.log(data);
-  })
-  socket.join('3')
-  socket.on('customerSendMessage', function(data) {
-
-    const mess = {'idTo': chosseSupporter, 'idFrom': socket.id, 'message': data, 'datetime': Date.now()}
-    console.log(mess);
-    io.to(chosseSupporter).emit('sendchat', mess);
-  })
-
-
-  socket.on('sendchat', function(data) {
-    con.query("INSERT INTO chatlog (idFrom, idTo, message, created_at) VALUE (?, ?, ?, NOW())",
-    [socket.id, data.idTo, data.message],
-    function (err, result, fields) {
-      if (err) throw err
-      //Handle sent to Customer
-      // socket.emit("...", result)
-    })
-  })
-
-
-
-
   socket.on('disconnect', function(){
     console.log('disconnected: ' + socket.id)
   })

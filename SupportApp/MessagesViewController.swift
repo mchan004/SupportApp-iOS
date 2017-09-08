@@ -37,7 +37,6 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         getChatlog()
         
         
-        
     }
     
     
@@ -74,14 +73,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         tableViewSMS.rowHeight = UITableViewAutomaticDimension
         tableViewSMS.estimatedRowHeight = 20
         tableViewSMS.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0)
-        
-        
-        SocketIOManager.sharedInstance.receiveChatMessage { (data) in
-            self.messages.append(data)
-            self.tableViewReloadData()
-        }
-        
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(receiveMessage(_:)), name: Notification.Name.init(rawValue: "ReceiveMessage"), object: nil)
     }
     
     
@@ -207,11 +199,14 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
             self.messages = data
             self.tableViewReloadData()
         }
-        
     }
     
     
-    
+    func receiveMessage(_ notification: Notification) {
+        let m = notification.object as! Message
+        messages.append(m)
+        tableViewReloadData()
+    }
     
     
 }
