@@ -27,6 +27,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
+function getCurrentTime() {
+  const today = new Date();
+  return today.toISOString();
+}
+
 
 /////////////////
 ////Socket.io////
@@ -37,29 +42,39 @@ io.on('connection', function(socket) {
   console.log("connected: " + socket.id);
 
 
-  var chosseSupporter = ''
-  socket.on('choose supporter', function(data) {
-    // socket.join(data)
-    chosseSupporter = data
+  var chooseSupporter = ''
+  socket.on('ChooseSupporter', function(data) {
+    const sql = "INSERT INTO customer (id, name, email, phone, created_at) VALUE (?, ?, ?, ?, NOW())"
+    const placeholder = [socket.id, data.name, data.email, data.phone]
+    con.query(sql, placeholder, function (err, result, fields) {
+      if (err) throw err
+      chooseSupporter = data.chooseSupporter
+      console.log(data.chooseSupporter);
+      const st = {'name': data.name, 'idFrom': socket.id, 'date': getCurrentTime()};
+      console.log(st);
+      io.to(data.chooseSupporter).emit('NewCustomer', st)
+    })
   })
 
   socket.on('FromCustomerSendMessage', function(data) {
-    const mess = {'idTo': chosseSupporter, 'idFrom': socket.id, 'message': data, 'datetime': Date.now()}
-    console.log(mess);
-    io.to(chosseSupporter).emit('FromCustomerSendMessage', mess)
+    const sql = "INSERT INTO chatlog (idFrom, idTo, message, attack, created_at) VALUE (?, ?, ?, ?, NOW())"
+    const placeholder = [socket.id, chooseSupporter, data, null]
+    con.query(sql, placeholder, function (err, result, fields) {
+      if (err) throw err
+      const mess = {'idTo': chooseSupporter, 'idFrom': socket.id, 'message': data, 'date': getCurrentTime()}
+      io.to(chooseSupporter).emit('FromCustomerSendMessage', mess)
+    })
   })
 
 
   socket.on('FromSupporterSendMessage', function(data) {
     con.query("INSERT INTO chatlog (idFrom, idTo, message, created_at) VALUE (?, ?, ?, NOW())",
-    [socket.id, data.idTo, data.message],
+    [socket.idSQL, data.idTo, data.message],
     function (err, result, fields) {
       if (err) throw err
-      //Handle sent to Customer
-      // socket.emit("...", result)
+      io.to(data.idTo).emit('FromSupporterSendMessage', data.message)
     })
   })
-
 
 
   // validate token
@@ -75,12 +90,11 @@ io.on('connection', function(socket) {
           socket.idSQL = idSQL
           const sql = "SELECT id FROM users WHERE id = ? AND password = ?"
           const placeholder = [idSQL, decoded.pw]
-          con.query(sql, placeholder,
-          function (err, result, fields) {
+          con.query(sql, placeholder, function (err, result, fields) {
             if (err) throw err
             if (result.length == 1) {
               socket.emit('authenticated', {"win": 0})
-              const sql = "SELECT cu.id, cu.name, c.created_at FROM customer as cu INNER JOIN chatlog as c ON (cu.id=c.idFrom OR cu.id=c.idTo) INNER JOIN users as u ON (c.idFrom=u.id OR c.idTo=u.id) WHERE u.id=? GROUP BY cu.name ORDER BY c.created_at DESC"
+              const sql = "SELECT CU.id, CU.name, C.message, C.created_at FROM customer AS CU INNER JOIN (SELECT * FROM chatlog GROUP BY idFrom, idTo ORDER BY created_at DESC) AS C ON (CU.id=C.idFrom OR CU.id=C.idTo) INNER JOIN users as u ON (C.idFrom=u.id OR C.idTo=u.id) WHERE u.id=? GROUP BY CU.name ORDER BY C.created_at DESC"
               con.query(sql, [1], function (err, result, fields) {
                 if (err) throw err
                 groupMessages = result

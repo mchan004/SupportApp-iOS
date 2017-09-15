@@ -10,7 +10,8 @@
 struct UserList {
     var id: String
     var name: String?
-    var date: String?
+    var date: String
+    var mess: String?
     
 //    init(id: String, name: String? = nil, date: String? = nil) {
 //        self.id = id

@@ -63,75 +63,83 @@
          right: 0;
          }
       </style>
-
       <script type="text/javascript">
-        // var objDiv = document.getElementById(".panel-body");
-        // objDiv.scrollTop = objDiv.scrollHeight;
+         // var objDiv = document.getElementById(".panel-body");
+         // objDiv.scrollTop = objDiv.scrollHeight;
 
 
 
-        $(document).ready(function() {
-          var socket = io("http://localhost:3000/");
-          // socket.on("server_gui_room_vua_tao", function(data) {
-          //   var s = "<li room='"+ data +"'>"+data+"</li>";
-          //   $("#roomlist").append(s);
-          // });
+         $(document).ready(function() {
+           var socket = io("http://localhost:3000/");
+           // socket.on("server_gui_room_vua_tao", function(data) {
+           //   var s = "<li room='"+ data +"'>"+data+"</li>";
+           //   $("#roomlist").append(s);
+           // });
+
+           $('#SP_chat').hide();
+
+           function reload() {
+             $('.panel-body').animate({
+             scrollTop: $('.panel-body').get(0).scrollHeight}, 500);
+             $("#text").val('');
+           }
+           reload();
+
+           function sendMessage() {
+             var m = $('#text').val();
+             if (m == '') {
+               return;
+             }
+             var mess = '<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>';
+             mess += '<strong class="pull-right primary-font">Bhaumik Patel</strong></div><p>';
+             mess += m;
+             mess += '</p></div></li>';
+             $('.chat').append(mess);
+             socket.emit('FromCustomerSendMessage', m);
+             reload();
+           }
+
+           socket.on('FromSupporterSendMessage', function(data) {
+
+             var mess = '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>12 mins ago</small></div>';
+             mess += '<p>' + data + '</p></div></li>';
+
+             $('.chat').append(mess);
+             reload();
+           })
+
+           $('#text').on('keypress', function(e) {
+             if (e.keyCode == 13) {
+               sendMessage();
+             }
+           });
+
+           $('#btn-chat').click(function() {
+             sendMessage();
+           });
 
 
-          function reload() {
-            $('.panel-body').animate({
-            scrollTop: $('.panel-body').get(0).scrollHeight}, 500);
-            $("#text").val('');
-          }
-          reload();
+           $('#SP_Join').click(function() {
+             $('#SP_info').hide(300, function() {
+               $('#SP_chat').show(300);
+             });
+             var data = {
+                         'chooseSupporter': $('#SP_chooseSupporter').val(),
+                         'name': $('#SP_name').val(),
+                         'phone': $('#SP_phone').val(),
+                         'email': $('#SP_email').val(),
+                       };
+             socket.emit('ChooseSupporter', data);
+           });
 
-          function sendMessage() {
-            var m = $("#text").val();
-            if (m == '') {
-              return;
-            }
-            var mess = '<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>';
-            mess += '<strong class="pull-right primary-font">Bhaumik Patel</strong></div><p>';
-            mess += m;
-            mess += '</p></div></li>';
-            $(".chat").append(mess);
-            socket.emit('FromCustomerSendMessage', m);
-            reload();
-          }
-
-          $('#text').on('keypress', function(e) {
-            if (e.keyCode == 13) {
-              sendMessage();
-            }
-          });
-
-          $("#btn-chat").click(function() {
-            sendMessage();
-          });
-
-          $("#chooseRoom").click(function() {
-            socket.emit('choose supporter', '3');
-          });
-
-        });
-
-
-
-
-
+         });
       </script>
    </head>
    <body>
-     <input type="button" id="chooseRoom" value="123">
-
-
-
-
-
-      <div class="col-md-3" id="foo">
+      <div class="col-sm-5 col-md-3" id="foo">
          <div class="panel panel-primary">
             <div class="panel-heading">
-               <span class="glyphicon glyphicon-comment"></span> Chat
+               <span class="glyphicon glyphicon-comment"></span> Để lại lời nhắn
                <div class="btn-group pull-right">
                   <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                   <span class="glyphicon glyphicon-chevron-down"></span>
@@ -156,77 +164,108 @@
                   </ul>
                </div>
             </div>
-            <div class="panel-body">
-               <ul class="chat">
-                  <li class="left clearfix">
-                     <span class="chat-img pull-left">
-                     <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                     </span>
-                     <div class="chat-body clearfix">
-                        <div class="header">
-                           <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-                           <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+            <div id="SP_chat">
+               <div class="panel-body">
+                  <ul class="chat">
+                     <!--<li class="left clearfix">
+                        <span class="chat-img pull-left">
+                        <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        </span>
+                        <div class="chat-body clearfix">
+                           <div class="header">
+                              <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                              <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                           </div>
+                           <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                              dolor, quis ullamcorper ligula sodales.
+                           </p>
                         </div>
-                        <p>
-                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                           dolor, quis ullamcorper ligula sodales.
-                        </p>
-                     </div>
-                  </li>
-                  <li class="right clearfix">
-                     <span class="chat-img pull-right">
-                     <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
-                     </span>
-                     <div class="chat-body clearfix">
-                        <div class="header">
-                           <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
-                           <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                     </li>
+                     <li class="right clearfix">
+                        <span class="chat-img pull-right">
+                        <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                        </span>
+                        <div class="chat-body clearfix">
+                           <div class="header">
+                              <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                              <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                           </div>
+                           <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                              dolor, quis ullamcorper ligula sodales.
+                           </p>
                         </div>
-                        <p>
-                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                           dolor, quis ullamcorper ligula sodales.
-                        </p>
-                     </div>
-                  </li>
-                  <li class="left clearfix">
-                     <span class="chat-img pull-left">
-                     <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                     </span>
-                     <div class="chat-body clearfix">
-                        <div class="header">
-                           <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-                           <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                     </li>
+                     <li class="left clearfix">
+                        <span class="chat-img pull-left">
+                        <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                        </span>
+                        <div class="chat-body clearfix">
+                           <div class="header">
+                              <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                              <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                           </div>
+                           <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                              dolor, quis ullamcorper ligula sodales.
+                           </p>
                         </div>
-                        <p>
-                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                           dolor, quis ullamcorper ligula sodales.
-                        </p>
-                     </div>
-                  </li>
-                  <li class="right clearfix">
-                     <span class="chat-img pull-right">
-                     <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
-                     </span>
-                     <div class="chat-body clearfix">
-                        <div class="header">
-                           <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
-                           <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                     </li>
+                     <li class="right clearfix">
+                        <span class="chat-img pull-right">
+                        <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                        </span>
+                        <div class="chat-body clearfix">
+                           <div class="header">
+                              <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                              <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                           </div>
+                           <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                              dolor, quis ullamcorper ligula sodales.
+                           </p>
                         </div>
-                        <p>
-                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                           dolor, quis ullamcorper ligula sodales.
-                        </p>
-                     </div>
-                  </li>
-               </ul>
+                     </li>-->
+                  </ul>
+               </div>
+               <div class="panel-footer">
+                  <div class="input-group">
+                     <input id="text" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                     <span class="input-group-btn">
+                     <button class="btn btn-warning btn-sm" id="btn-chat">
+                     Send</button>
+                     </span>
+                  </div>
+               </div>
             </div>
-            <div class="panel-footer">
-               <div class="input-group">
-                  <input id="text" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                  <span class="input-group-btn">
-                  <button class="btn btn-warning btn-sm" id="btn-chat">
-                  Send</button>
-                  </span>
+            <div id="SP_info" style="padding: 10px">
+               nghỉ lễ Quốc Khánh từ 02/09/2017 - 04/09/2017.<br>
+               Mọi ý kiến, thắc mắc Quý Khách hàng vui lòng gọi vào Hotline: 0169.2250.821
+               <div class="form-group">
+                  <label>Choose Supporter:</label>
+                  <select class="form-control" id="SP_chooseSupporter" required>
+                     <option value="1">1</option>
+                     <option>2</option>
+                     <option>3</option>
+                     <option>4</option>
+                     <option>5</option>
+                  </select>
+               </div>
+               <div class="form-group">
+                  <label>Your name:</label>
+                  <input type="text" id="SP_name" class="form-control" required>
+               </div>
+               <div class="form-group">
+                  <label>Email:</label>
+                  <input type="text" id="SP_email" class="form-control">
+               </div>
+               <div class="form-group">
+                  <label>Phone:</label>
+                  <input type="text" id="SP_phone" class="form-control">
+               </div>
+               <div class="text-center">
+                  <input type="button" id="SP_Join" class="btn btn-primary" value="Gửi tin nhắn">
                </div>
             </div>
          </div>

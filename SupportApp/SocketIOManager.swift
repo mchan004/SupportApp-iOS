@@ -27,9 +27,6 @@ class SocketIOManager: NSObject {
             socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!, config: SocketIOClientConfiguration(arrayLiteral: SocketIOClientOption.connectParams(["token": token])))
             
             socket.connect()
-            socket.on("error") { ( error, ack) -> Void in
-                
-            }
             socket.on("connect", callback: { (data, ack) in
                 self.socket.emit("authenticate", token)
             })
@@ -59,19 +56,29 @@ class SocketIOManager: NSObject {
     func getUserList(completionHandler: @escaping (_ userList: [UserList]) -> Void) {
         socket.on("userList") { ( dataArray, ack) -> Void in
             let dataun = dataArray.first as! [[String: AnyObject]]
+            var users: [UserList] = []
             for data in dataun {
-                let u = UserList(id: data["id"] as! String, name: data["name"] as? String, date: data[""] as? String)
-                self.usersList.append(u)
+                let u = UserList(id: data["id"] as! String, name: data["name"] as? String, date: data["created_at"] as! String, mess: data["message"] as? String)
+                users.append(u)
             }
-            completionHandler(self.usersList)
+            self.usersList = users
+            completionHandler(users)
         }
         receiveChatMessage()
+    }
+    
+    func listenNewCustomer(completionHandler: @escaping (_ userList: UserList) -> Void) {
+        socket.on("NewCustomer") { ( dataArray, ack) -> Void in
+            let data = dataArray.first as! [String: AnyObject]
+            let u = UserList(id: data["idFrom"] as! String, name: data["name"] as? String, date: data["date"] as! String, mess: "Someone want ask you!")
+            completionHandler(u)
+        }
     }
     
     fileprivate func receiveChatMessage() {
         socket.on("FromCustomerSendMessage") { ( data, ack) -> Void in
             let json = data.first as! [String: Any]
-            let m: Message = Message(idFrom: json["idFrom"] as? String, idTo: json["idTo"]! as! String, message: json["message"]! as! String, attack: nil, created_at: json["created_at"] as? String)
+            let m: Message = Message(idFrom: json["idFrom"] as? String, idTo: json["idTo"]! as! String, message: json["message"]! as! String, attack: nil, created_at: json["date"] as? String)
             
             NotificationCenter.default.post(name: Notification.Name.init(rawValue: "ReceiveMessage"), object: m)
         }

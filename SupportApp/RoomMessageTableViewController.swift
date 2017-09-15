@@ -17,7 +17,6 @@ class RoomMessageTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setupView()
         setupTableView()
         
@@ -44,18 +43,40 @@ class RoomMessageTableViewController: UITableViewController {
         }
     }
     
+    func reloadTableView() {
+        DispatchQueue.main.async() {
+            self.tableView.reloadData()
+        }
+    }
+    
+    
     
     /////////////////
     ////Tableview////
     /////////////////
+    func sortTableView(_ notification: Notification) {
+        let message = notification.object as! Message
+        let index = userList.index { (i) -> Bool in
+            return i.id == message.idFrom || i.id == message.idTo
+        }
+        if let i = index {
+            userList[i].date = message.created_at!
+            userList[i].mess = message.message
+            userList.sort { $0.date > $1.date }
+            reloadTableView()
+        }
+    }
+    
     func setupTableView() {
         SocketIOManager.sharedInstance.getUserList { (data) in
             self.userList = data
-            
-            DispatchQueue.main.async() {
-                self.tableView.reloadData()
-            }
+            self.reloadTableView()
         }
+        SocketIOManager.sharedInstance.listenNewCustomer { (data) in
+            self.userList.insert(data, at: 0)
+            self.reloadTableView()
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(sortTableView(_:)), name: Notification.Name.init(rawValue: "ReceiveMessage"), object: nil)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

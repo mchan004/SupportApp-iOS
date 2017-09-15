@@ -27,7 +27,8 @@ class LoginController: UIViewController {
         Alamofire.request(AllConfig().myWebsite + "/login", method: .post, parameters: parameters).responseJSON { response in
             
             if let data = response.data {
-                
+                let utf8Text = String(data: data, encoding: .utf8)
+                print(utf8Text!)
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                     
@@ -53,6 +54,7 @@ class LoginController: UIViewController {
                     
                 } catch {
                     print("Error deserializing JSON: \(error)")
+                    self.alert()
                 }
                 
             }
