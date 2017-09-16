@@ -61,7 +61,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
     }
     
     
-    func backButton() {
+    @objc func backButton() {
         _ = navigationController?.popViewController(animated: true)
     }
     
@@ -154,7 +154,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         NotificationCenter.default.removeObserver(self)
     }
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         let keyboardHeight = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.height
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
         
@@ -170,7 +170,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
     
     
     
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
         
@@ -226,7 +226,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
     }
     
     
-    func receiveMessage(_ notification: Notification) {
+    @objc func receiveMessage(_ notification: Notification) {
         let m = notification.object as! Message
         if (m.idFrom == idCus) {
             messages.append(m)
