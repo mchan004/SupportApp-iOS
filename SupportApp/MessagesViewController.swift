@@ -35,8 +35,6 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         setupKeyboard()
         
         getChatlog()
-        
-        
     }
     
     
@@ -81,41 +79,27 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         return messages.count
     }
     
-    var aA = true
-    var aB = true
+    var aA = false
+    var aB = false
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         if messages[indexPath.row].idFrom == idCus {
-            let cell = tableViewSMS.dequeueReusableCell(withIdentifier: "receiven", for: indexPath) as! ReceiveMessageTableViewCell
-            if indexPath.row == 0 {
-                aB = false
-            }
-            if !aA {
-                aA = !aA
-                aB = true
-            } else {
-                if aB {
-                    aB = false
-                    cell.avataImage = nil
-                }
-            }
-            cell.message.text = messages[indexPath.row].message
+            let cell = tableViewSMS.dequeueReusableCell(withIdentifier: "receive", for: indexPath) as! ReceiveMessageTableViewCell
+            
+            cell.mess = messages[indexPath.row]
+            cell.aA = aA
+            aB = false
+            aA = true
+            
             return cell
         } else {
             let cell = tableViewSMS.dequeueReusableCell(withIdentifier: "send", for: indexPath) as! SendMessageTableViewCell
-            if indexPath.row == 0 {
-                aB = true
-            }
-            if aA {
-                aA = !aA
-                aB = true
-            } else {
-                if aB {
-                    aB = false
-                    cell.avataImage = nil
-                }
-            }
-            cell.message.text = messages[indexPath.row].message
+            
+            cell.mess = messages[indexPath.row]
+            cell.aB = aB
+            
+            aA = false
+            aB = true
             return cell
         }
         

@@ -14,5 +14,4 @@ struct Message {
     var attack: String?
     var created_at: String?
     
-    
 }
