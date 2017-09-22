@@ -56,7 +56,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3T2-nD-hVr">
-                                <rect key="frame" x="188" y="227.66666666666669" width="38" height="30.000000000000057"/>
+                                <rect key="frame" x="82" y="227.66666666666669" width="250" height="30.000000000000057"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -97,11 +97,13 @@
                         <color key="backgroundColor" red="0.2783970832824707" green="0.27845108509063721" blue="0.27839374542236328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3T2-nD-hVr" firstAttribute="centerX" secondItem="B5P-4x-JEa" secondAttribute="centerX" id="9yZ-IC-iM2"/>
+                            <constraint firstItem="3T2-nD-hVr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IDd-E4-AbI" secondAttribute="leading" id="DLr-Zi-cvz"/>
                             <constraint firstItem="TyX-Df-pjn" firstAttribute="top" secondItem="KVK-YW-nzf" secondAttribute="bottom" id="Eio-2P-Fpl"/>
                             <constraint firstItem="YSV-Jh-cTY" firstAttribute="leading" secondItem="KVK-YW-nzf" secondAttribute="leading" id="JnO-Jp-MaI"/>
                             <constraint firstItem="TyX-Df-pjn" firstAttribute="trailing" secondItem="KVK-YW-nzf" secondAttribute="trailing" id="Ses-tn-7OU"/>
                             <constraint firstItem="IDd-E4-AbI" firstAttribute="trailing" secondItem="YSV-Jh-cTY" secondAttribute="trailing" id="Vpz-7b-dVA"/>
                             <constraint firstItem="IDd-E4-AbI" firstAttribute="top" secondItem="YSV-Jh-cTY" secondAttribute="bottom" id="Y6p-bB-bcC"/>
+                            <constraint firstItem="3T2-nD-hVr" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IDd-E4-AbI" secondAttribute="trailing" id="dmi-eB-tPx"/>
                             <constraint firstItem="XdQ-zx-usj" firstAttribute="centerY" secondItem="B5P-4x-JEa" secondAttribute="centerY" constant="60" id="gua-dt-Eqm"/>
                             <constraint firstItem="TyX-Df-pjn" firstAttribute="leading" secondItem="KVK-YW-nzf" secondAttribute="leading" constant="-5" id="hUR-eY-die"/>
                             <constraint firstItem="IDd-E4-AbI" firstAttribute="centerX" secondItem="B5P-4x-JEa" secondAttribute="centerX" id="jlJ-5R-eGG"/>
