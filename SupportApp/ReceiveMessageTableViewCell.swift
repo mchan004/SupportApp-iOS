@@ -18,22 +18,6 @@ class ReceiveMessageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     
-    
-    var mess: Message? {
-        didSet {
-            if let m = mess?.message {
-                message.text = m
-            }
-        }
-    }
-    
-    var aA: Bool? {
-        didSet {
-            avataImage.isHidden = aA!
-        }
-    }
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

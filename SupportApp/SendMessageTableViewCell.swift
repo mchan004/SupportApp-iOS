@@ -19,20 +19,6 @@ class SendMessageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     
-    var mess: Message? {
-        didSet {
-            if let m = mess?.message {
-                message.text = m
-            }
-        }
-    }
-    
-    var aB: Bool? {
-        didSet {
-            avataImage.isHidden = aB!
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
