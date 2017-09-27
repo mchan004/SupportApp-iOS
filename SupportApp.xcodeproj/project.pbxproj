@@ -104,9 +104,6 @@
 		186261C61F2798E400B1857C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				189A46F61F278644006DF15B /* AppDelegate.swift */,
-				189A46FF1F278644006DF15B /* LaunchScreen.storyboard */,
-				189A47021F278644006DF15B /* Info.plist */,
 				2695316F1F376B25008D4617 /* Extension.swift */,
 				26FE9C6B1F39CD0300C1FACB /* SocketIOManager.swift */,
 				26532BAC1F4D50800049F39B /* HttpRequest.swift */,
@@ -135,6 +132,7 @@
 		189A46F51F278644006DF15B /* SupportApp */ = {
 			isa = PBXGroup;
 			children = (
+				265DAFBA1F79357F006BAE44 /* Other */,
 				186261C61F2798E400B1857C /* Helper */,
 				186261C51F2798CE00B1857C /* Model */,
 				189A46FD1F278644006DF15B /* Assets.xcassets */,
@@ -162,6 +160,16 @@
 				265812EB1F3039BE003C5F78 /* SupportApp-Bridging-Header.h */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		265DAFBA1F79357F006BAE44 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				189A46F61F278644006DF15B /* AppDelegate.swift */,
+				189A46FF1F278644006DF15B /* LaunchScreen.storyboard */,
+				189A47021F278644006DF15B /* Info.plist */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 		26CC49B41F3367340015E078 /* MessagesCell */ = {

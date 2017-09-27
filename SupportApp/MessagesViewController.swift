@@ -47,12 +47,12 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
     func setupNavigationBar() {
         
         //Back Button
-        let backButton = UIButton.init(type: .custom)
-        backButton.setImage(#imageLiteral(resourceName: "back").withRenderingMode(.alwaysTemplate), for: UIControlState.normal)
-        backButton.frame = CGRect(x: 0, y: 0, width: 23, height: 23)
-        backButton.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        backButton.addTarget(self, action: #selector(self.backButton), for: .touchUpInside)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+//        let backButton = UIButton.init(type: .custom)
+//        backButton.setImage(#imageLiteral(resourceName: "back").withRenderingMode(.alwaysTemplate), for: UIControlState.normal)
+//        backButton.frame = CGRect(x: 0, y: 0, width: 23, height: 23)
+//        backButton.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//        backButton.addTarget(self, action: #selector(self.backButton), for: .touchUpInside)
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         
         let nameCustomer = userDefaults.object(forKey: "nameCustommerSelected") as! String
         nameNavigation.text = nameCustomer
@@ -79,27 +79,19 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         return messages.count
     }
     
-    var aA = false
-    var aB = false
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if messages[indexPath.row].idFrom == idCus {
             let cell = tableViewSMS.dequeueReusableCell(withIdentifier: "receive", for: indexPath) as! ReceiveMessageTableViewCell
             
             cell.mess = messages[indexPath.row]
-            cell.aA = aA
-            aB = false
-            aA = true
             
             return cell
         } else {
             let cell = tableViewSMS.dequeueReusableCell(withIdentifier: "send", for: indexPath) as! SendMessageTableViewCell
             
             cell.mess = messages[indexPath.row]
-            cell.aB = aB
             
-            aA = false
-            aB = true
             return cell
         }
         
