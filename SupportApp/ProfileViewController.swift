@@ -20,7 +20,10 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     @IBOutlet weak var saveLayoutTop: NSLayoutConstraint!
     
-    
+    @IBAction func BackButton(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.switchHome()
+    }
     
     
     

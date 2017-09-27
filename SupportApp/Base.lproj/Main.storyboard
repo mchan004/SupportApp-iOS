@@ -191,7 +191,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wen-Cl-HdG">
-                                <rect key="frame" x="134" y="300.5" width="42" height="29"/>
+                                <rect key="frame" x="134" y="301" width="87" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="87" id="5ge-cQ-1Jd"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Boy"/>
                                     <segment title="Girl"/>
@@ -256,7 +259,7 @@
                             <constraint firstItem="RGl-lu-bMG" firstAttribute="top" secondItem="cEk-bJ-j84" secondAttribute="bottom" constant="30" id="55Y-gS-ccx"/>
                             <constraint firstItem="5G8-qq-5hu" firstAttribute="leading" secondItem="X4b-K8-mVs" secondAttribute="trailing" constant="10" id="6CL-4k-RSa"/>
                             <constraint firstItem="VrZ-K2-tnz" firstAttribute="leading" secondItem="cEk-bJ-j84" secondAttribute="leading" id="AX9-or-clw"/>
-                            <constraint firstItem="wen-Cl-HdG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Edm-Ah-u0P" secondAttribute="trailing" constant="8" symbolic="YES" id="CBy-b8-EXw"/>
+                            <constraint firstItem="wen-Cl-HdG" firstAttribute="leading" secondItem="Edm-Ah-u0P" secondAttribute="trailing" constant="8" symbolic="YES" id="CBy-b8-EXw"/>
                             <constraint firstItem="Edm-Ah-u0P" firstAttribute="trailing" secondItem="2Nm-De-WQc" secondAttribute="leadingMargin" constant="110" id="Kqy-d1-K0V"/>
                             <constraint firstItem="RGl-lu-bMG" firstAttribute="centerX" secondItem="2Nm-De-WQc" secondAttribute="centerX" id="M9D-Kl-eho"/>
                             <constraint firstItem="cEk-bJ-j84" firstAttribute="centerY" secondItem="zit-vD-iOK" secondAttribute="centerY" id="O4W-US-8KX"/>
@@ -270,10 +273,10 @@
                             <constraint firstItem="G9g-ua-0ll" firstAttribute="leading" secondItem="2Nm-De-WQc" secondAttribute="leadingMargin" id="cuc-h9-J4l"/>
                             <constraint firstItem="zit-vD-iOK" firstAttribute="trailing" secondItem="2Nm-De-WQc" secondAttribute="leadingMargin" constant="110" id="eDG-Pm-Jro"/>
                             <constraint firstItem="PDZ-s3-sLM" firstAttribute="top" secondItem="mXi-GJ-QGU" secondAttribute="bottom" constant="8" id="eSS-wo-Mjf"/>
-                            <constraint firstAttribute="trailing" secondItem="wen-Cl-HdG" secondAttribute="trailing" constant="199" id="fgj-IK-Gd2"/>
                             <constraint firstItem="Tse-Zs-TBV" firstAttribute="leading" secondItem="X4b-K8-mVs" secondAttribute="trailing" constant="10" id="hv1-RM-SZV"/>
                             <constraint firstItem="mXi-GJ-QGU" firstAttribute="top" secondItem="Tse-Zs-TBV" secondAttribute="bottom" constant="12" id="jVw-YP-mLa"/>
                             <constraint firstItem="G9g-ua-0ll" firstAttribute="top" secondItem="MNX-da-J89" secondAttribute="bottom" constant="5" id="jdV-Q5-M17"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wen-Cl-HdG" secondAttribute="trailing" constant="20" symbolic="YES" id="lE1-4P-N7g"/>
                             <constraint firstItem="Edm-Ah-u0P" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2Nm-De-WQc" secondAttribute="leading" constant="20" symbolic="YES" id="mvY-R8-fGr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PDZ-s3-sLM" secondAttribute="trailing" id="ogY-Fm-AH1"/>
                             <constraint firstItem="X4b-K8-mVs" firstAttribute="top" secondItem="G9g-ua-0ll" secondAttribute="bottom" constant="20" id="rra-L3-URD"/>
@@ -284,7 +287,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="S0H-mV-DWC">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="awO-sG-wvo"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="awO-sG-wvo">
+                            <connections>
+                                <action selector="BackButton:" destination="uK8-qt-4wF" id="rLP-e0-fmI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="editAvataButton" destination="8K2-5q-MF0" id="5dy-ny-Tjm"/>
@@ -296,7 +303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wje-qo-FyQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2478" y="-1294"/>
+            <point key="canvasLocation" x="2477.5999999999999" y="-1294.0029985007498"/>
         </scene>
         <!--Room Message Table View Controller-->
         <scene sceneID="fz6-bQ-2Jw">
