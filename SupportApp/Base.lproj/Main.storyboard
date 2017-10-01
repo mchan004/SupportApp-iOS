@@ -220,6 +220,9 @@
                                 <state key="normal" title="Save">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="SaveButton:" destination="uK8-qt-4wF" eventType="touchUpInside" id="ShI-p8-j9u"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cEk-bJ-j84">
                                 <rect key="frame" x="136" y="338.5" width="160" height="30"/>

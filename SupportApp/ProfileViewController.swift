@@ -26,6 +26,9 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     
+    @IBAction func SaveButton(_ sender: Any) {
+        
+    }
     
     @IBAction func selectedPosionTextField(_ senqder: Any) {
         posionPickerView.isHidden = false
