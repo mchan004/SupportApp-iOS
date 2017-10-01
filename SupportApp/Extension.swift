@@ -17,8 +17,8 @@ extension UIApplication {
 
 
 class AllConfig {
-    let myWebsite = "http://172.30.0.252:3000"
-//    let myWebsite = "http://192.168.1.105:3000"
+//    let myWebsite = "http://172.30.0.252:3000"
+    let myWebsite = "http://192.168.1.103:3000"
     
 }
 
@@ -53,7 +53,7 @@ extension String {
                                             upper: min(length, max(0, r.upperBound))))
         let start = index(startIndex, offsetBy: range.lowerBound)
         let end = index(start, offsetBy: range.upperBound - range.lowerBound)
-        return self[Range(start ..< end)]
+        return String(self[Range(start ..< end)])
     }
     
 }

@@ -54,7 +54,7 @@ class RoomMessageTableViewController: UITableViewController {
     /////////////////
     ////Tableview////
     /////////////////
-    func sortTableView(_ notification: Notification) {
+    @objc func sortTableView(_ notification: Notification) {
         let message = notification.object as! Message
         let index = userList.index { (i) -> Bool in
             return i.id == message.idFrom || i.id == message.idTo

@@ -20,9 +20,15 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     @IBOutlet weak var saveLayoutTop: NSLayoutConstraint!
     
+    @IBAction func BackButton(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.switchHome()
+    }
     
     
-    
+    @IBAction func SaveButton(_ sender: Any) {
+        
+    }
     
     @IBAction func selectedPosionTextField(_ senqder: Any) {
         posionPickerView.isHidden = false

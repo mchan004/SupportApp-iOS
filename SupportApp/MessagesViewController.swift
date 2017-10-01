@@ -35,8 +35,6 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         setupKeyboard()
         
         getChatlog()
-        
-        
     }
     
     
@@ -49,19 +47,19 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
     func setupNavigationBar() {
         
         //Back Button
-        let backButton = UIButton.init(type: .custom)
-        backButton.setImage(#imageLiteral(resourceName: "back").withRenderingMode(.alwaysTemplate), for: UIControlState.normal)
-        backButton.frame = CGRect(x: 0, y: 0, width: 23, height: 23)
-        backButton.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        backButton.addTarget(self, action: #selector(self.backButton), for: .touchUpInside)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+//        let backButton = UIButton.init(type: .custom)
+//        backButton.setImage(#imageLiteral(resourceName: "back").withRenderingMode(.alwaysTemplate), for: UIControlState.normal)
+//        backButton.frame = CGRect(x: 0, y: 0, width: 23, height: 23)
+//        backButton.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//        backButton.addTarget(self, action: #selector(self.backButton), for: .touchUpInside)
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         
         let nameCustomer = userDefaults.object(forKey: "nameCustommerSelected") as! String
         nameNavigation.text = nameCustomer
     }
     
     
-    func backButton() {
+    @objc func backButton() {
         _ = navigationController?.popViewController(animated: true)
     }
     
@@ -81,41 +79,19 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         return messages.count
     }
     
-    var aA = true
-    var aB = true
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         if messages[indexPath.row].idFrom == idCus {
-            let cell = tableViewSMS.dequeueReusableCell(withIdentifier: "receiven", for: indexPath) as! ReceiveMessageTableViewCell
-            if indexPath.row == 0 {
-                aB = false
-            }
-            if !aA {
-                aA = !aA
-                aB = true
-            } else {
-                if aB {
-                    aB = false
-                    cell.avataImage = nil
-                }
-            }
-            cell.message.text = messages[indexPath.row].message
+            let cell = tableViewSMS.dequeueReusableCell(withIdentifier: "receive", for: indexPath) as! ReceiveMessageTableViewCell
+            
+            cell.mess = messages[indexPath.row]
+            
             return cell
         } else {
             let cell = tableViewSMS.dequeueReusableCell(withIdentifier: "send", for: indexPath) as! SendMessageTableViewCell
-            if indexPath.row == 0 {
-                aB = true
-            }
-            if aA {
-                aA = !aA
-                aB = true
-            } else {
-                if aB {
-                    aB = false
-                    cell.avataImage = nil
-                }
-            }
-            cell.message.text = messages[indexPath.row].message
+            
+            cell.mess = messages[indexPath.row]
+            
             return cell
         }
         
@@ -154,7 +130,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
         NotificationCenter.default.removeObserver(self)
     }
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         let keyboardHeight = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.height
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
         
@@ -170,7 +146,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
     
     
     
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
         
@@ -226,7 +202,7 @@ class MessagesViewController: UIViewController, UITableViewDataSource,UITableVie
     }
     
     
-    func receiveMessage(_ notification: Notification) {
+    @objc func receiveMessage(_ notification: Notification) {
         let m = notification.object as! Message
         if (m.idFrom == idCus) {
             messages.append(m)
