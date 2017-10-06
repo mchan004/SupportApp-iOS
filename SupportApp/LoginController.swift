@@ -24,7 +24,7 @@ class LoginController: UIViewController {
         }
         
         let parameters: Parameters = ["username": username.text!, "password": password.text!]
-        Alamofire.request(AllConfig().myWebsite + "/login", method: .post, parameters: parameters).responseJSON { response in
+        Alamofire.request(MoreFunc().myWebsite + "/login", method: .post, parameters: parameters).responseJSON { response in
             
             if let data = response.data {
                 let utf8Text = String(data: data, encoding: .utf8)

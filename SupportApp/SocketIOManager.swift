@@ -11,7 +11,7 @@ import KeychainSwift
 
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
-    var socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!)
+    var socket = SocketIOClient(socketURL: URL(string: MoreFunc().myWebsite)!)
     var usersList: [UserList] = []
     
     
@@ -24,7 +24,7 @@ class SocketIOManager: NSObject {
     func establishConnection() {
         let keychain = KeychainSwift()
         if let token = keychain.get("token") {
-            socket = SocketIOClient(socketURL: URL(string: AllConfig().myWebsite)!, config: SocketIOClientConfiguration(arrayLiteral: SocketIOClientOption.connectParams(["token": token])))
+            socket = SocketIOClient(socketURL: URL(string: MoreFunc().myWebsite)!, config: SocketIOClientConfiguration(arrayLiteral: SocketIOClientOption.connectParams(["token": token])))
             
             socket.connect()
             socket.on("connect", callback: { (data, ack) in

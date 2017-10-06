@@ -8,6 +8,7 @@
 
 import UIKit
 import KeychainSwift
+import ReachabilitySwift
 
 class RoomMessageTableViewController: UITableViewController {
     
@@ -16,7 +17,7 @@ class RoomMessageTableViewController: UITableViewController {
     var userList: [UserList] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        MoreFunc().checkNetwork(fromController: self)
         setupView()
         setupTableView()
         
@@ -56,14 +57,34 @@ class RoomMessageTableViewController: UITableViewController {
     /////////////////
     @objc func sortTableView(_ notification: Notification) {
         let message = notification.object as! Message
-        let index = userList.index { (i) -> Bool in
-            return i.id == message.idFrom || i.id == message.idTo
+        
+        let find = userList.index(where: { (i) -> Bool in
+            return i.id == message.idFrom
+        })
+        
+        if let _ = find {
+            
+            let index = userList.index { (i) -> Bool in
+                return i.id == message.idFrom || i.id == message.idTo
+            }
+            if let i = index {
+                
+                userList[i].date = message.created_at!
+                userList[i].mess = message.message
+                userList.sort { $0.date > $1.date }
+                reloadTableView()
+            }
+        } else {
+            getUserList()
         }
-        if let i = index {
-            userList[i].date = message.created_at!
-            userList[i].mess = message.message
-            userList.sort { $0.date > $1.date }
-            reloadTableView()
+
+    }
+    
+    func getUserList() {
+        let httpRequest = HttpRequest()
+        httpRequest.getUserList() { (data) in
+            self.userList = data
+            self.reloadTableView()
         }
     }
     

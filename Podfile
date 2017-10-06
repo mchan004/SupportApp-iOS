@@ -9,5 +9,6 @@ target 'SupportApp' do
   pod 'Socket.IO-Client-Swift'
   pod 'Alamofire'
   pod 'KeychainSwift'
+  pod 'ReachabilitySwift'
 
 end

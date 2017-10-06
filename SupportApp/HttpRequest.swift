@@ -45,7 +45,7 @@ class HttpRequest {
             "idCus": idCus
         ]
         
-        Alamofire.request(AllConfig().myWebsite + "/getChatlog", method: .post, parameters: parameters, headers: headers).response { response in
+        Alamofire.request(MoreFunc().myWebsite + "/getChatlog", method: .post, parameters: parameters, headers: headers).response { response in
             if let data = response.data {
                 
                 do {
@@ -73,7 +73,38 @@ class HttpRequest {
     }
     
     
-    func login(username: String, password: String, completionHandler: @escaping (_ messages: [String: Any]) -> Void) {
+    
+    func getUserList(completionHandler: @escaping (_ userList: [UserList]) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "x-access-token": token!
+        ]
+        
+        Alamofire.request(MoreFunc().myWebsite + "/getChatlog", method: .post, headers: headers).response { response in
+            if let data = response.data {
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any]]
+                    
+                    var userList: [UserList] = []
+                    
+                    for j in json {
+                        
+                        let user = UserList(id: j["id"] as! String, name: j["name"] as? String, date: j["created_at"] as! String, mess: j["message"] as? String)
+                        
+                        userList.append(user)
+                    }
+                    
+                    
+                    completionHandler(userList)
+                    
+                } catch {
+                    print("Error deserializing JSON: \(error)")
+                }
+                
+                
+            }
+        }
         
     }
     

@@ -20,6 +20,7 @@
 		265812F31F303BAB003C5F78 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F21F303BAB003C5F78 /* SideMenuTableViewCell.swift */; };
 		265812F51F303ECF003C5F78 /* RoomMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F41F303ECF003C5F78 /* RoomMessageTableViewController.swift */; };
 		265812F71F303EFC003C5F78 /* RoomMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265812F61F303EFC003C5F78 /* RoomMessageTableViewCell.swift */; };
+		268FE4B21F874E1B0010705F /* NewFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268FE4B11F874E1B0010705F /* NewFunction.swift */; };
 		269531701F376B25008D4617 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2695316F1F376B25008D4617 /* Extension.swift */; };
 		26A163A01F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A1639F1F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift */; };
 		26CC49B31F32FD400015E078 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CC49B21F32FD400015E078 /* MessagesViewController.swift */; };
@@ -48,6 +49,7 @@
 		265812F21F303BAB003C5F78 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		265812F41F303ECF003C5F78 /* RoomMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomMessageTableViewController.swift; sourceTree = "<group>"; };
 		265812F61F303EFC003C5F78 /* RoomMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomMessageTableViewCell.swift; sourceTree = "<group>"; };
+		268FE4B11F874E1B0010705F /* NewFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFunction.swift; sourceTree = "<group>"; };
 		2695316F1F376B25008D4617 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		26A1639F1F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveMessageTableViewCell.swift; sourceTree = "<group>"; };
 		26CC49B21F32FD400015E078 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				2695316F1F376B25008D4617 /* Extension.swift */,
 				26FE9C6B1F39CD0300C1FACB /* SocketIOManager.swift */,
 				26532BAC1F4D50800049F39B /* HttpRequest.swift */,
+				268FE4B11F874E1B0010705F /* NewFunction.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -313,15 +316,17 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SupportApp/Pods-SupportApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
-				"${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarscreamSocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -342,6 +347,7 @@
 				26CC49B31F32FD400015E078 /* MessagesViewController.swift in Sources */,
 				26532BAD1F4D50810049F39B /* HttpRequest.swift in Sources */,
 				265812F71F303EFC003C5F78 /* RoomMessageTableViewCell.swift in Sources */,
+				268FE4B21F874E1B0010705F /* NewFunction.swift in Sources */,
 				26A163A01F35CD5000C02EA9 /* ReceiveMessageTableViewCell.swift in Sources */,
 				189A46F71F278644006DF15B /* AppDelegate.swift in Sources */,
 				265812EE1F3039C1003C5F78 /* SWRevealViewController.m in Sources */,

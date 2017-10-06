@@ -71,10 +71,8 @@
 
          $(document).ready(function() {
            var socket = io("http://localhost:3000/");
-           // socket.on("server_gui_room_vua_tao", function(data) {
-           //   var s = "<li room='"+ data +"'>"+data+"</li>";
-           //   $("#roomlist").append(s);
-           // });
+           var cusName = "";
+           var supName = "";
 
            $('#SP_chat').hide();
 
@@ -90,21 +88,21 @@
              if (m == '') {
                return;
              }
-             var mess = '<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>';
-             mess += '<strong class="pull-right primary-font">Bhaumik Patel</strong></div><p>';
-             mess += m;
-             mess += '</p></div></li>';
-             $('.chat').append(mess);
+             var messSend = '<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>';
+             messSend += '<strong class="pull-right primary-font">' + cusName + '</strong></div><p>';
+             messSend += m + '</p></div></li>';
+             $('.chat').append(messSend);
              socket.emit('FromCustomerSendMessage', m);
              reload();
            }
 
            socket.on('FromSupporterSendMessage', function(data) {
 
-             var mess = '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>12 mins ago</small></div>';
-             mess += '<p>' + data + '</p></div></li>';
+             var messReceive = '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">'
+             messReceive += supName + '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>12 mins ago</small></div>';
+             messReceive += '<p>' + data + '</p></div></li>';
 
-             $('.chat').append(mess);
+             $('.chat').append(messReceive);
              reload();
            })
 
@@ -129,6 +127,8 @@
                          'phone': $('#SP_phone').val(),
                          'email': $('#SP_email').val(),
                        };
+             cusName = $('#SP_name').val();
+             supName = $('#SP_chooseSupporter').text();
              socket.emit('ChooseSupporter', data);
            });
 
@@ -245,7 +245,7 @@
                <div class="form-group">
                   <label>Choose Supporter:</label>
                   <select class="form-control" id="SP_chooseSupporter" required>
-                     <option value="1">1</option>
+                     <option value="1">Phuong 989. 81123.12312</option>
                      <option>2</option>
                      <option>3</option>
                      <option>4</option>

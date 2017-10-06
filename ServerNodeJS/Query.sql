@@ -1,5 +1,5 @@
-SELECT t2.name, t1.message, t1.created_at FROM chatlog t1
-  JOIN (SELECT cu.name, c.idFrom, MAX(c.created_at) created_at FROM chatlog c
+SELECT t2.id, t2.name, t1.message, t1.created_at FROM chatlog t1
+  JOIN (SELECT qcu.name, c.idFrom, MAX(c.created_at) created_at FROM chatlog c
       	JOIN customer cu ON (cu.id=c.idTo OR cu.id=c.idFrom)
       	GROUP BY cu.id
         ) t2
