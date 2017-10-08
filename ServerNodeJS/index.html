@@ -66,7 +66,7 @@
            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
            background-color: #555;
          }
-         
+
          #foo {
            position: fixed;
            bottom: 0;
@@ -118,9 +118,10 @@
 
               document.cookie = "SA_idSup=" + $('#SP_chooseSupporter').val();
               document.cookie = "SA_cusName=" + $('#SP_name').val();
-              document.cookie = "SA_supName=" + $('#SP_chooseSupporter').text();
+              document.cookie = "SA_supName=" + $('#SP_chooseSupporter option:selected').text();
               cusName = $('#SP_name').val();
-              supName = $('#SP_chooseSupporter').text();
+              supName = $('#SP_chooseSupporter option:selected').text();
+              alert(supName);
               socket.emit('ChooseSupporter', data);
             });
           } else {
@@ -130,10 +131,6 @@
             socket.on('GetMessagesLog', function(data) {
               reload();
             })
-
-          }
-
-          function MessageRevice(mess) {
 
           }
 
@@ -149,21 +146,46 @@
             if (m == '') {
               return;
             }
-            var messSend = '<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>';
-            messSend += '<strong class="pull-right primary-font">' + cusName + '</strong></div><p>';
-            messSend += m + '</p></div></li>';
-            $('.chat').append(messSend);
             socket.emit('FromCustomerSendMessage', m);
-            reload();
+          }
+
+          function textReceive(data) {
+            var messReceive = '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">';
+            messReceive += supName + '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>12 mins ago</small></div>';
+            messReceive += '<p>' + data + '</p></div></li>';
+            return messReceive;
+          }
+          function textSend(data) {
+            var messSend = '<li class="right clearfix"><span class="chat-img pull-right"><img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small><strong class="pull-right primary-font">';
+            messSend += cusName + '</strong></div><p>' + data + '</p></div></li>';
+            return messSend;
           }
 
           socket.on('FromSupporterSendMessage', function(data) {
-            var messReceive = '<li class="left clearfix"><span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">'
-            messReceive += supName + '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>12 mins ago</small></div>';
-            messReceive += '<p>' + data + '</p></div></li>';
-            $('.chat').append(messReceive);
+
+            $('.chat').append(textReceive(data));
             reload();
           })
+
+          socket.on('ResFromCusSendMess', function(data) {
+            textSend($('.chat').append(messSend));
+            reload();
+          });
+
+          socket.on('CustomerGetChatlog', function(data) {
+            var txt = "";
+            for (var i = 0, len = data.length; i < len; i++) {
+              if(data[i].idFrom == idCus) {
+                txt += textSend(data[i].message);
+              } else {
+                txt += textReceive(data[i].message);
+              }
+            }
+            $('.chat').append(txt);
+            reload();
+          });
+
+
 
           $('#text').on('keypress', function(e) {
             if (e.keyCode == 13) {
@@ -228,7 +250,7 @@
                <div class="form-group">
                   <label>Choose Supporter:</label>
                   <select class="form-control" id="SP_chooseSupporter" required>
-                     <option value="1">Phuong 989. 81123.12312</option>
+                     <option value="1">Phuong 98</option>
                      <option>2</option>
                      <option>3</option>
                      <option>4</option>

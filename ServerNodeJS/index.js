@@ -39,7 +39,7 @@ function getCurrentTime() {
 /////////////////
 
 io.on('connection', function(socket) {
-  console.log("connected: " + socket.idCus)
+
 
 
 
@@ -65,10 +65,9 @@ io.on('connection', function(socket) {
                 if (err) throw err
 
 
-          /////////////
-          //Validated//
-          /////////////
-                groupMessages = result
+                /////////////
+                //Validated//
+                /////////////
                 socket.join(idSQL)
                 socket.emit("userList", result)
 
@@ -83,6 +82,10 @@ io.on('connection', function(socket) {
                 })
 
 
+
+
+                ///////////////////////////
+                ///////////////////////////
               })
             } else {
               socket.emit('unauthorized', {"err": "token expred"}, function() {
@@ -104,11 +107,20 @@ io.on('connection', function(socket) {
   //Client//
   //////////
   socket.idCus = socket.id
+  console.log("connected: " + socket.idCus)
   socket.emit('idClient', socket.id)
   socket.on("CustomerReconnect", function(data) {
     socket.join(data.idCus)
     socket.chooseSupporter = data.idSup
     socket.idCus = data.idCus
+
+    const sql = "Select * FROM chatlog WHERE (idFrom = ? AND idTo = ?) OR (idFrom = ? AND idTo = ?)"
+    const placeholder = [data.idSup, data.idCus, data.idCus, data.idSup]
+    con.query(sql, placeholder,
+    function (err, result, fields) {
+      if (err) throw err
+      socket.emit('CustomerGetChatlog', result)
+    })
   })
 
   socket.on('ChooseSupporter', function(data) {
@@ -129,8 +141,11 @@ io.on('connection', function(socket) {
       if (err) throw err
       const mess = {'idTo': socket.chooseSupporter, 'idFrom': socket.idCus, 'message': data, 'date': getCurrentTime()}
       io.to(socket.chooseSupporter).emit('FromCustomerSendMessage', mess)
+      io.to(socket.idCus).emit('ResFromCusSendMess', data)
     })
   })
+
+
 
   socket.on('disconnect', function(){
     console.log('disconnected: ' + socket.idCus)
