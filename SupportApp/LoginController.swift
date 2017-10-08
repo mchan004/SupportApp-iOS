@@ -19,7 +19,7 @@ class LoginController: UIViewController {
     let keychain = KeychainSwift()
     @IBAction func login(_ sender: Any) {
         if (username.text?.length)! < 3 || (password.text?.length)! < 3 {
-            alert()
+            MoreFunc().showAlert(fromController: self, title: "Something wrong here!", message: nil)
             return
         }
         
@@ -46,7 +46,7 @@ class LoginController: UIViewController {
                                 
                             }
                         } else {
-                            self.alert()
+                            MoreFunc().showAlert(fromController: self, title: "Something wrong here!", message: nil)
                         }
                         
                     }
@@ -54,7 +54,7 @@ class LoginController: UIViewController {
                     
                 } catch {
                     print("Error deserializing JSON: \(error)")
-                    self.alert()
+                    MoreFunc().showAlert(fromController: self, title: "Something wrong here!", message: nil)
                 }
                 
             }
@@ -64,6 +64,7 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        MoreFunc().checkNetwork(fromController: self)
         
         keychain.clear()
         SocketIOManager.sharedInstance.closeConnection()
@@ -78,11 +79,5 @@ class LoginController: UIViewController {
         
         logoImage.image = #imageLiteral(resourceName: "logo_end").withRenderingMode(.alwaysTemplate)
         
-    }
-    
-    func alert() {
-        let alert = UIAlertController(title: "Something wrong here!", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Let me check again", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
 }

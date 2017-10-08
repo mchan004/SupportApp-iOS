@@ -138,7 +138,6 @@
 				265DAFBA1F79357F006BAE44 /* Other */,
 				186261C61F2798E400B1857C /* Helper */,
 				186261C51F2798CE00B1857C /* Model */,
-				189A46FD1F278644006DF15B /* Assets.xcassets */,
 				186261C41F2798AF00B1857C /* View */,
 				186261C31F27985F00B1857C /* Controller */,
 				265812EF1F3039CF003C5F78 /* Frameworks */,
@@ -168,6 +167,7 @@
 		265DAFBA1F79357F006BAE44 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				189A46FD1F278644006DF15B /* Assets.xcassets */,
 				189A46F61F278644006DF15B /* AppDelegate.swift */,
 				189A46FF1F278644006DF15B /* LaunchScreen.storyboard */,
 				189A47021F278644006DF15B /* Info.plist */,

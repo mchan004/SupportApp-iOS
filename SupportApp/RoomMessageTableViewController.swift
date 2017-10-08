@@ -50,36 +50,6 @@ class RoomMessageTableViewController: UITableViewController {
         }
     }
     
-    
-    
-    /////////////////
-    ////Tableview////
-    /////////////////
-    @objc func sortTableView(_ notification: Notification) {
-        let message = notification.object as! Message
-        
-        let find = userList.index(where: { (i) -> Bool in
-            return i.id == message.idFrom
-        })
-        
-        if let _ = find {
-            
-            let index = userList.index { (i) -> Bool in
-                return i.id == message.idFrom || i.id == message.idTo
-            }
-            if let i = index {
-                
-                userList[i].date = message.created_at!
-                userList[i].mess = message.message
-                userList.sort { $0.date > $1.date }
-                reloadTableView()
-            }
-        } else {
-            getUserList()
-        }
-
-    }
-    
     func getUserList() {
         let httpRequest = HttpRequest()
         httpRequest.getUserList() { (data) in
@@ -87,6 +57,37 @@ class RoomMessageTableViewController: UITableViewController {
             self.reloadTableView()
         }
     }
+    
+    @objc func sortTableView(_ notification: Notification) {
+        let message = notification.object as! Message
+        
+//        let find = userList.index(where: { (i) -> Bool in
+//            return i.id == message.idFrom
+//        })
+//
+//        if find != nil {
+            let index = userList.index { (i) -> Bool in
+                return i.id == message.idFrom || i.id == message.idTo
+            }
+            if let i = index {
+                userList[i].date = message.created_at!
+                userList[i].mess = message.message
+                userList.sort { $0.date > $1.date }
+                reloadTableView()
+            }
+         else {
+            getUserList()
+        }
+        
+    }
+    
+    
+    
+    
+    
+    /////////////////
+    ////Tableview////
+    /////////////////
     
     func setupTableView() {
         SocketIOManager.sharedInstance.getUserList { (data) in

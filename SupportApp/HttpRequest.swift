@@ -80,7 +80,7 @@ class HttpRequest {
             "x-access-token": token!
         ]
         
-        Alamofire.request(MoreFunc().myWebsite + "/getChatlog", method: .post, headers: headers).response { response in
+        Alamofire.request(MoreFunc().myWebsite + "/getUserList", method: .post, headers: headers).response { response in
             if let data = response.data {
                 
                 do {

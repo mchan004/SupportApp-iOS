@@ -10,8 +10,8 @@ import Foundation
 import ReachabilitySwift
 
 class MoreFunc {
-    //    let myWebsite = "http://172.30.0.252:3000"
-    let myWebsite = "http://192.168.1.106:3000"
+//    let myWebsite = "http://172.30.0.252:3000"
+    let myWebsite = "http://192.168.1.110:3000"
     
     func showAlert(fromController controller: UIViewController, title:String?, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
