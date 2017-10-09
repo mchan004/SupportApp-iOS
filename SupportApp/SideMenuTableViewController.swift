@@ -15,7 +15,9 @@ class SideMenuTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+//        UIApplication.sharedApplication.statusBarHidden = true
+        UIApplication.shared.isStatusBarHidden = true
         avataImage.clipsToBounds = true
         avataImage.layer.cornerRadius = avataImage.frame.size.width / 2
         avataImage.layer.borderWidth = 2

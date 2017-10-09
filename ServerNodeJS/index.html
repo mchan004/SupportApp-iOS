@@ -168,7 +168,7 @@
           })
 
           socket.on('ResFromCusSendMess', function(data) {
-            textSend($('.chat').append(messSend));
+            textSend($('.chat').append(textSend(data)));
             reload();
           });
 
