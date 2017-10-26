@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Company;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -47,11 +48,24 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+
+        if (isset($data["new"])) {
+          return Validator::make($data, [
+              'website' => 'required|string|max:60',
+              'webname' => 'required|string|max:60',
+              'name' => 'required|string|max:60',
+              'email' => 'required|string|email|max:80|unique:users',
+              'password' => 'required|string|max:60|min:6',
+          ]);
+        } else {
+          return Validator::make($data, [
+              'website' => 'required|string|max:60|exists:company,website',
+              'name' => 'required|string|max:60',
+              'email' => 'required|string|email|max:80|unique:users',
+              'password' => 'required|string|max:60|min:6',
+          ]);
+        }
+
     }
 
     /**
@@ -62,10 +76,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+      if (isset($data["new"])) {
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        $cp = new Company;
+        $cp->userID = $user->id;
+        $cp->name = $data['webname'];
+        $cp->website = $data['website'];
+        $cp->save();
+        $user->idCompany = $cp->id + $user->id;
+        $user->Admin = 1;
+        $user->save();
+        return $user;
+      } else {
+        $cp = Company::where('website', $data["website"])->firstOrFail();
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'idCompany' => $cp->userID + $cp->id,
+            'password' => bcrypt($data['password']),
+        ]);
+        return $user;
+      }
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('Login.Register');
     }
 }

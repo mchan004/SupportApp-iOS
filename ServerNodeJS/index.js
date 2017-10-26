@@ -239,6 +239,17 @@ app.post("/login", function (req, res) {
   })
 })
 
+app.post("/getProfile", mid, function(req,res) {
+  const id = req.id
+
+  const sql = "Select * FROM user WHERE id = ?"
+  const placeholder = [id]
+  con.query(sql, placeholder,
+  function (err, result, fields) {
+    if (err) throw err
+    res.json(result);
+  })
+})
 
 app.post("/updateProfile", mid, function(req,res) {
   const id = req.id

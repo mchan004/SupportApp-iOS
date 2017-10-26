@@ -90,10 +90,11 @@ class RoomMessageTableViewController: UITableViewController {
     /////////////////
     
     func setupTableView() {
-        SocketIOManager.sharedInstance.getUserList { (data) in
-            self.userList = data
-            self.reloadTableView()
-        }
+//        SocketIOManager.sharedInstance.getUserList { (data) in
+//            self.userList = data
+//            self.reloadTableView()
+//        }
+        getUserList()
         SocketIOManager.sharedInstance.listenNewCustomer { (data) in
             self.userList.insert(data, at: 0)
             self.reloadTableView()

@@ -11,24 +11,18 @@
 |
 */
 
-use Illuminate\Http\Request;
-use App\User;
-
 Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/user', 'UserController@index')->name('home');
-Route::post('/checkLogin', function (Request $request) {
-  $user = User::where('email', $request->email)->first();
-  if ($user) {
-    if (Hash::check($request->password, $user->password))
-    {
-      echo 1;
-    }
-    else {
-      echo 0;
-    }
-  }
+// Route::get('/user', 'UserController@index')->name('home');
 
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/user', 'QuanlyController@home');
+
+  Route::group(['middleware' => 'admin'], function () {
+    Route::get('publish/{id}', 'QuanlyMonanController@publish');
+    Route::get('unpublish/{id}', 'QuanlyMonanController@unpublish');
+    Route::get('xoa/{id}', 'QuanlyMonanController@XoaMonan');
+  });
 });

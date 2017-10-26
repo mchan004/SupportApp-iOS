@@ -12,7 +12,6 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     @IBOutlet weak var posionPickerView: UIPickerView!
     @IBOutlet weak var posionTextField: UITextField!
-    
 
     @IBOutlet weak var saveButton: UIButton!
     
@@ -24,6 +23,11 @@ class ProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.switchHome()
     }
+    
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        view.endEditing(true)
+    }
+    
     
     
     @IBAction func SaveButton(_ sender: Any) {
