@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class CheckAdmin
 {
@@ -15,7 +16,7 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        if ($request->admin == false) {
+        if (Auth::user() &&  Auth::user()->Admin == false) {
           return redirect('/user');
         }
         return $next($request);
