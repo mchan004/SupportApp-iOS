@@ -20,12 +20,21 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/user', 'QuanlyController@home');
   Route::group(['prefix' => 'user'], function () {
+    Route::get('/profile', 'ProfileController@show');
+    Route::post('/profile', 'ProfileController@post');
+
+    Route::get('change-password', 'Auth\UpdatePasswordController@index')->name('password.form');
+    Route::post('change-password', 'Auth\UpdatePasswordController@update')->name('password.update');
+
     Route::group(['middleware' => 'admin'], function () {
       Route::group(['prefix' => 'QuanLyThanhVien'], function () {
         Route::get('/', 'QuanLyThanhVienController@show');
         Route::get('/deActive/{id}', 'QuanLyThanhVienController@deActive');
         Route::get('/Active/{id}', 'QuanLyThanhVienController@Active');
         Route::get('/remove/{id}', 'QuanLyThanhVienController@remove');
+
+        Route::get('edit/{id}', 'QuanLyThanhVienController@showEdit');
+        Route::post('edit', 'QuanLyThanhVienController@postEdit');
       });
 
       Route::group(['prefix' => 'QuanLyChucVu'], function () {

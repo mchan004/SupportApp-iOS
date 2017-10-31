@@ -65,7 +65,7 @@
                     <td class="a-center ">
                       <input type="checkbox" class="flat" name="table_records">
                     </td>
-                    <td><a href="/user/QuanLyThanhVien/suaThanhVien/{{$v->id}}">{{$v->name}}</a></td>
+                    <td><a href="/user/QuanLyThanhVien/edit/{{$v->id}}">{{$v->name}}</a></td>
                     <td>{{ isset($v->position->name) ? $v->position->name : '' }}</td>
                     <td>{{$v->email}}</td>
                     <td>
