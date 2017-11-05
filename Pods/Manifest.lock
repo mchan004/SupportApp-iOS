@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.5.1)
-  - KeychainSwift (9.0.2)
-  - ReachabilitySwift (3)
+  - KeychainSwift (10.0.0)
+  - ReachabilitySwift (4.1.0)
   - Socket.IO-Client-Swift (12.1.2):
     - Starscream (~> 2.1.1)
   - Starscream (2.1.1)
@@ -14,8 +14,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  KeychainSwift: 3ab1d428d0dbff59cd056f1d0bfc640b36c2b081
-  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  KeychainSwift: f9f7910449a0c0fd2cabc889121530dd2c477c33
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   Socket.IO-Client-Swift: ba3cb1c4bf0a6ca90080406a2c22685c25ad1f60
   Starscream: 142bd8ef24592d985daee9fa48c936070b85b15f
 

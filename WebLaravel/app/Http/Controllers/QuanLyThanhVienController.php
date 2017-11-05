@@ -26,7 +26,7 @@ class QuanLyThanhVienController extends Controller
   public function showEdit(Request $r)
   {
     $idC = Auth::user()->idCompany;
-    $us = User::find($r->id)->where('idCompany', $idC)->first();
+    $us = User::where('id', $r->id)->where('idCompany', $idC)->first();
     $ps = Position::where('idCompany', $idC)->get();
     return view('Login.EditMember', ['data' => $us, 'ps' => $ps]);
   }
