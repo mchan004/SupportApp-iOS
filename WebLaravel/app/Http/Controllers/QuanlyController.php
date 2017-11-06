@@ -10,11 +10,12 @@ class QuanlyController extends Controller
 {
   public function home()
   {
-    return view('Login.home');
+    $idCompany = Auth::user()->idCompany;
+    return view('Login.home', ['idCompany' => $idCompany]);
   }
 
   public function quanLyThanhVien()
   {
-    
+
   }
 }

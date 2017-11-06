@@ -8,7 +8,7 @@
 
 import UIKit
 import KeychainSwift
-import ReachabilitySwift
+import Reachability
 
 class RoomMessageTableViewController: UITableViewController {
     
