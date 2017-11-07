@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePositionTable extends Migration
+class CreatePosionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePositionTable extends Migration
      */
     public function up()
     {
-      Schema::create('position', function (Blueprint $table) {
+      Schema::create('posion', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('idCompany')->unsigned();
           $table->string('name');
@@ -29,6 +29,6 @@ class CreatePositionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('position');
+        Schema::dropIfExists('posion');
     }
 }

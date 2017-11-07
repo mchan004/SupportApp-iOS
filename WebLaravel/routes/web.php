@@ -19,23 +19,10 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/user', 'QuanlyController@home');
-  Route::group(['prefix' => 'user'], function () {
-    Route::group(['middleware' => 'admin'], function () {
-      Route::group(['prefix' => 'QuanLyThanhVien'], function () {
-        Route::get('/', 'QuanLyThanhVienController@show');
-        Route::get('/deActive/{id}', 'QuanLyThanhVienController@deActive');
-        Route::get('/Active/{id}', 'QuanLyThanhVienController@Active');
-        Route::get('/remove/{id}', 'QuanLyThanhVienController@remove');
-      });
 
-      Route::group(['prefix' => 'QuanLyChucVu'], function () {
-        Route::get('/', 'QuanLyChucVuController@show');
-        Route::get('add', 'QuanLyChucVuController@showAdd');
-        Route::post('add', 'QuanLyChucVuController@postAdd');
-        Route::get('edit/{id}', 'QuanLyChucVuController@showEdit');
-        Route::post('edit', 'QuanLyChucVuController@postEdit');
-        Route::get('delete/{id}', 'QuanLyChucVuController@delete');
-      });
-    });
+  Route::group(['middleware' => 'admin'], function () {
+    Route::get('publish/{id}', 'QuanlyMonanController@publish');
+    Route::get('unpublish/{id}', 'QuanlyMonanController@unpublish');
+    Route::get('xoa/{id}', 'QuanlyMonanController@XoaMonan');
   });
 });

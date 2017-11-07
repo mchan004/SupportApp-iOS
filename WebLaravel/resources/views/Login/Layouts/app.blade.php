@@ -70,11 +70,10 @@
 
                     </ul>
                   </li>
-                  <li class="active"><a><i class="fa fa-edit"></i> Manager<span class="fa fa-chevron-down"></span></a>
+                  <li class="active"><a><i class="fa fa-edit"></i> Bài viết <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="display: block;">
-                      <li><a href="/user/QuanLyChucVu">Manager positions</a></li>
-                      <li><a href="/user/QuanLyThanhVien">Manager members</a></li>
-                      <li><a href="/user/KiemTraChatLog">Manager chatlogs</a></li>
+                      <li><a href="/user/QuanLyThanhVien">Quản lý thành viên</a></li>
+                      <li><a href="/user/KiemTraChatLog">Kiểm tra chatlogs</a></li>
 
                     </ul>
                   </li>
