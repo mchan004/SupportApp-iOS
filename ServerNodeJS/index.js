@@ -40,6 +40,9 @@ function getCurrentTime() {
 
 io.on('connection', function(socket) {
 
+
+
+
   // validate token
   socket.emit('connect', socket.id)
   socket.on('authenticate', function(data) {

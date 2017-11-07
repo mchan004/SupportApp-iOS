@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Reachability
+import ReachabilitySwift
 
 class MoreFunc {
 //    let myWebsite = "http://172.30.0.252:3000"

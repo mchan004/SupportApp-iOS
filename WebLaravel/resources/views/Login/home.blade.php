@@ -5,33 +5,28 @@
 <div class="">
   <div class="page-title">
     <div class="title_left">
-      <h3>Guide</h3>
+      <h3>Bookmark</h3>
     </div>
 
+    <div class="title_right">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="clearfix"></div>
-  <div class="text-center">
-    <h3>Install widget</h3>
-    <p>To install SupportApp, you can place this code after the <strong>&lt;/html&gt;</strong> tag on every page of your website or you can use one of our plugins made for the most popular platforms.</p>
-    <p>.</p>
-  </div>
+
+  <div class="row cooking-item">
 
 
-  <div class="row">
-    <div class="col-xs-6">
-      <div class="row">
-        <iframe width="100%" height="415" src="https://www.youtube.com/embed/Z25F2BImwFs" frameborder="0" allowfullscreen></iframe>
-      </div>
 
-    </div>
-    <div class="col-xs-6">
-      <div class="">
 
-        <textarea class="form-control" rows="10">&lt;!DOCTYPE html&gt;&lt;html&gt; &lt;head&gt; &lt;meta charset="utf-8"&gt; &lt;title&gt;&lt;/title&gt; &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"&gt; &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"&gt;&lt;/script&gt; &lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"&gt;&lt;/script&gt; &lt;script src="http://localhost:3000/socket.io/socket.io.js"&gt;&lt;/script&gt; &lt;style media="screen"&gt; .chat{list-style: none; margin: 0; padding: 0;}.chat li{margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px dotted #B3A9A9;}.chat li.left .chat-body{margin-left: 60px;}.chat li.right .chat-body{margin-right: 60px;}.chat li .chat-body p{margin: 0; color: #777777;}.panel .slidedown .glyphicon, .chat .glyphicon{margin-right: 5px;}.panel-body{overflow-y: scroll; height: 250px;}::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); background-color: #F5F5F5;}::-webkit-scrollbar{width: 12px; background-color: #F5F5F5;}::-webkit-scrollbar-thumb{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); background-color: #555;}#foo{position: fixed; bottom: 0; right: 0;}&lt;/style&gt; &lt;script type="text/javascript"&gt;function getCookie(cname){var name=cname + "="; var decodedCookie=decodeURIComponent(document.cookie); var ca=decodedCookie.split(';'); for(var i=0; i &lt;ca.length; i++){var c=ca[i]; while (c.charAt(0)==' '){c=c.substring(1);}if (c.indexOf(name)==0){return c.substring(name.length, c.length);}}return "";}$(document).ready(function(){var idCompany={{ $idCompany }}; var socket=io("http://localhost:3000/"); var cusName=getCookie("SA_cusName"); var supName=getCookie("SA_supName"); var idCus=getCookie("SA_idCus"); var idSup=getCookie("SA_idSup"); //check cookie var idSoc=""; if (idCus==""){//Chưa socket.emit('idClient', idCompany); socket.on('idClient', function(data){idSoc=data.idClient; var listCus=""; for (var i=0, len=data.listCustomer.length; i &lt; len; i++){listCus +='&lt;option value="' + data.listCustomer[i].id + '"&gt;' + data.listCustomer[i].name + '&lt;/option&gt;';}$('#SP_chooseSupporter').append(listCus);}) $('#SP_chat').hide(); $('#SP_Join').click(function(){document.cookie="SA_idCus=" + idSoc; $('#SP_info').hide(300, function(){$('#SP_chat').show(300);}); var data={'chooseSupporter': $('#SP_chooseSupporter').val(), 'name': $('#SP_name').val(), 'phone': $('#SP_phone').val(), 'email': $('#SP_email').val(),}; document.cookie="SA_idSup=" + $('#SP_chooseSupporter').val(); document.cookie="SA_cusName=" + $('#SP_name').val(); document.cookie="SA_supName=" + $('#SP_chooseSupporter option:selected').text(); cusName=$('#SP_name').val(); supName=$('#SP_chooseSupporter option:selected').text(); alert(supName); socket.emit('ChooseSupporter', data);});}else{//Rồi $('#SP_info').hide(); var data={'idCus': idCus, 'idSup': idSup}; socket.emit('CustomerReconnect', data); socket.on('GetMessagesLog', function(data){reload();})}function reload(){$('.panel-body').animate({scrollTop: $('.panel-body').get(0).scrollHeight}, 500); $("#text").val('');}function sendMessage(){var m=$('#text').val(); if (m==''){return;}socket.emit('FromCustomerSendMessage', m);}function textReceive(data){var messReceive='&lt;li class="left clearfix"&gt;&lt;span class="chat-img pull-left"&gt;&lt;img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle"/&gt;&lt;/span&gt;&lt;div class="chat-body clearfix"&gt;&lt;div class="header"&gt;&lt;strong class="primary-font"&gt;'; messReceive +=supName + '&lt;/strong&gt; &lt;small class="pull-right text-muted"&gt;&lt;span class="glyphicon glyphicon-time"&gt;&lt;/span&gt;12 mins ago&lt;/small&gt;&lt;/div&gt;'; messReceive +='&lt;p&gt;' + data + '&lt;/p&gt;&lt;/div&gt;&lt;/li&gt;'; return messReceive;}function textSend(data){var messSend='&lt;li class="right clearfix"&gt;&lt;span class="chat-img pull-right"&gt;&lt;img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle"/&gt;&lt;/span&gt;&lt;div class="chat-body clearfix"&gt;&lt;div class="header"&gt;&lt;small class=" text-muted"&gt;&lt;span class="glyphicon glyphicon-time"&gt;&lt;/span&gt;13 mins ago&lt;/small&gt;&lt;strong class="pull-right primary-font"&gt;'; messSend +=cusName + '&lt;/strong&gt;&lt;/div&gt;&lt;p&gt;' + data + '&lt;/p&gt;&lt;/div&gt;&lt;/li&gt;'; return messSend;}socket.on('FromSupporterSendMessage', function(data){$('.chat').append(textReceive(data)); reload();}) socket.on('ResFromCusSendMess', function(data){$('.chat').append(textSend(data)); reload();}); socket.on('CustomerGetChatlog', function(data){var txt=""; for (var i=0, len=data.length; i &lt; len; i++){if(data[i].idFrom==idCus){txt +=textSend(data[i].message);}else{txt +=textReceive(data[i].message);}}$('.chat').append(txt); reload();}); $('#text').on('keypress', function(e){if (e.keyCode==13){sendMessage();}}); $('#btn-chat').click(function(){sendMessage();});}); &lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;div class="col-sm-5 col-md-3" id="foo"&gt; &lt;div class="panel panel-primary"&gt; &lt;div class="panel-heading"&gt; &lt;span class="glyphicon glyphicon-comment"&gt;&lt;/span&gt; Để lại lời nhắn &lt;div class="btn-group pull-right"&gt; &lt;button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown"&gt; &lt;span class="glyphicon glyphicon-chevron-down"&gt;&lt;/span&gt; &lt;/button&gt; &lt;ul class="dropdown-menu slidedown"&gt; &lt;li&gt;&lt;a href="http://www.jquery2dotnet.com"&gt;&lt;span class="glyphicon glyphicon-refresh"&gt; &lt;/span&gt;Refresh&lt;/a&gt; &lt;\/li&gt;&lt;li&gt;&lt;a href="http://www.jquery2dotnet.com"&gt;&lt;span class="glyphicon glyphicon-ok-sign"&gt; &lt;/span&gt;Available&lt;/a&gt; &lt;\/li&gt;&lt;li&gt;&lt;a href="http://www.jquery2dotnet.com"&gt;&lt;span class="glyphicon glyphicon-remove"&gt; &lt;/span&gt;Busy&lt;/a&gt; &lt;\/li&gt;&lt;li&gt;&lt;a href="http://www.jquery2dotnet.com"&gt;&lt;span class="glyphicon glyphicon-time"&gt;&lt;/span&gt; Away&lt;/a&gt; &lt;\/li&gt;&lt;li class="divider"&gt;&lt;\/li&gt;&lt;li&gt;&lt;a href="http://www.jquery2dotnet.com"&gt;&lt;span class="glyphicon glyphicon-off"&gt;&lt;/span&gt; Sign Out&lt;/a&gt; &lt;\/li&gt;&lt;/ul&gt; &lt;\/div&gt;&lt;\/div&gt;&lt;div id="SP_chat"&gt; &lt;div class="panel-body"&gt; &lt;ul class="chat"&gt; &lt;/ul&gt; &lt;\/div&gt;&lt;div class="panel-footer"&gt; &lt;div class="input-group"&gt; &lt;input id="text" type="text" class="form-control input-sm" placeholder="Type your message here..."/&gt; &lt;span class="input-group-btn"&gt; &lt;button class="btn btn-warning btn-sm" id="btn-chat"&gt; Send&lt;/button&gt; &lt;/span&gt; &lt;\/div&gt;&lt;\/div&gt;&lt;\/div&gt;&lt;div id="SP_info" style="padding: 10px"&gt; nghỉ lễ Quốc Khánh từ 02/09/2017 - 04/09/2017.&lt;br&gt;Mọi ý kiến, thắc mắc Quý Khách hàng vui lòng gọi vào Hotline: 0169.2250.821 &lt;div class="form-group"&gt; &lt;label&gt;Choose Supporter:&lt;/label&gt; &lt;select class="form-control" id="SP_chooseSupporter" required&gt; &lt;/select&gt; &lt;\/div&gt;&lt;div class="form-group"&gt; &lt;label&gt;Your name:&lt;/label&gt; &lt;input type="text" id="SP_name" class="form-control" required&gt; &lt;\/div&gt;&lt;div class="form-group"&gt; &lt;label&gt;Email:&lt;/label&gt; &lt;input type="text" id="SP_email" class="form-control"&gt; &lt;\/div&gt;&lt;div class="form-group"&gt; &lt;label&gt;Phone:&lt;/label&gt; &lt;input type="text" id="SP_phone" class="form-control"&gt; &lt;\/div&gt;&lt;div class="text-center"&gt; &lt;input type="button" id="SP_Join" class="btn btn-primary" value="Gửi tin nhắn"&gt; &lt;\/div&gt;&lt;\/div&gt;&lt;\/div&gt;&lt;\/div&gt;&lt;/body&gt;&lt;/html&gt;</textarea>
-      </div>
-
-    </div>
   </div>
 </div>
 @endsection
