@@ -65,12 +65,11 @@
                 <ul class="nav side-menu">
                   <li><a href="/user"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="display: block;">
-                      <li><a href="/user/profile">Thông tin cá nhân</a></li>
-                      <li><a href="/user/change-password">Đổi mật khẩu</a></li>
+                      <li><a href="/user/thongtin">Thông tin cá nhân</a></li>
+                      <li><a href="/user/doimatkhau">Đổi mật khẩu</a></li>
 
                     </ul>
                   </li>
-                  @if (Auth::user()->Admin)
                   <li class="active"><a><i class="fa fa-edit"></i> Manager<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="display: block;">
                       <li><a href="/user/QuanLyChucVu">Manager positions</a></li>
@@ -79,7 +78,6 @@
 
                     </ul>
                   </li>
-                  @endif
                 </ul>
               </div>
 
