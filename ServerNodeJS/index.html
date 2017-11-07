@@ -92,7 +92,6 @@
         }
 
         $(document).ready(function() {
-          var idCompany = 7;
           var socket = io("http://localhost:3000/");
           var cusName = getCookie("SA_cusName");
           var supName = getCookie("SA_supName");
@@ -101,18 +100,8 @@
           //check cookie
           var idSoc = "";
           if (idCus == "") {
-            //Chưa
-            socket.emit('idClient', idCompany);
             socket.on('idClient', function(data) {
-              idSoc = data.idClient;
-
-              var listCus = "";
-              for (var i = 0, len = data.listCustomer.length; i < len; i++) {
-                listCus += '<option value="' + data.listCustomer[i].id + '">' + data.listCustomer[i].name + '</option>';
-              }
-              $('#SP_chooseSupporter').append(listCus);
-
-
+              idSoc = data;
             })
             $('#SP_chat').hide();
             $('#SP_Join').click(function() {
@@ -136,7 +125,6 @@
               socket.emit('ChooseSupporter', data);
             });
           } else {
-            //Rồi
             $('#SP_info').hide();
             var data = { 'idCus': idCus, 'idSup': idSup  };
             socket.emit('CustomerReconnect', data);
@@ -180,7 +168,7 @@
           })
 
           socket.on('ResFromCusSendMess', function(data) {
-            $('.chat').append(textSend(data));
+            textSend($('.chat').append(textSend(data)));
             reload();
           });
 
@@ -262,6 +250,11 @@
                <div class="form-group">
                   <label>Choose Supporter:</label>
                   <select class="form-control" id="SP_chooseSupporter" required>
+                     <option value="1">Phuong 98</option>
+                     <option>2</option>
+                     <option>3</option>
+                     <option>4</option>
+                     <option>5</option>
                   </select>
                </div>
                <div class="form-group">

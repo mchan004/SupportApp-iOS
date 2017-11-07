@@ -108,20 +108,7 @@ io.on('connection', function(socket) {
   //////////
   socket.idCus = socket.id
   console.log("connected: " + socket.idCus)
-
-  socket.on('idClient', function(data) {
-    const sql = "SELECT u.id, u.name, p.name AS position FROM users AS u INNER JOIN position AS p ON p.id = u.idPosition WHERE u.idCompany = ? ORDER BY p.name"
-    const placeholder = [data]
-    con.query(sql, placeholder,
-    function (err, result, fields) {
-      if (err) throw err
-      const myObj = { "idClient": socket.id, "listCustomer": result}
-      socket.emit('idClient', myObj)
-    })
-
-  })
-
-
+  socket.emit('idClient', socket.id)
   socket.on("CustomerReconnect", function(data) {
     socket.join(data.idCus)
     socket.chooseSupporter = data.idSup
